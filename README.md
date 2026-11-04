@@ -5,7 +5,7 @@
 ## 第一次用（5 分钟上手）
 
 1. 装 Node.js（去 nodejs.org 下载安装包一路下一步；装过就跳过）
-2. 在终端敲 `npx skills add mattpocock/skills`，装 Matt 技能集
+2. 终端敲 `npx skills add mattpocock/skills`，装 Matt 技能集，并跑一次 `/setup-matt-pocock-skills` 配置 tracker（本套件可独立运行：没配 tracker 时票走 `.scratch/` 本地文件）
 3. 在终端（Windows 用 Git Bash）进入本套件文件夹，敲：
 
    ```bash
@@ -74,15 +74,6 @@ grill-with-docs →（research / prototype 旁路）→ to-spec → to-tickets
 - **纪律全域化**：AGENTS.md 记忆套件地图写明「一切记忆写入（含平时主动写入）过两问测试＋写入四问」＋重写律短规，用每会话载入的文件约束平台常驻写入行为。
 
 > 设计依据：对 Jesse Vincent、Anthropic 官方、github/spec-kit、BMAD-METHOD、Cline Memory Bank、Ralph loop、Manus、AI Hero 等业界实践的三路调研，并经多轮独立子代理评审修复（fresh eyes 评审法）。
-
-## 安装（ZCode）
-
-```bash
-# 把四个技能目录复制到 ZCode 技能目录（命令在终端里敲）
-cp -r project-init orient checkpoint memory-audit ~/.zcode/skills/
-```
-
-**前置**：建议先装 Matt Pocock 技能集（`npx skills add mattpocock/skills`）并跑一次 `/setup-matt-pocock-skills`——本套件与其协作但可独立运行（无 tracker 配置时票走 `.scratch/` 本地文件）。
 
 ## 平台适配说明
 
