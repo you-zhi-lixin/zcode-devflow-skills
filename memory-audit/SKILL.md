@@ -1,6 +1,6 @@
 ---
 name: memory-audit
-description: 记忆库深度对账：对全部记忆文件做逐句核验，治理过时、矛盾、越界、形态、断链与孤岛，处置全部过用户拍板。
+description: 每收口 2-3 张票跑一次。记忆库深度对账：对全部记忆文件做逐句核验，治理过时、矛盾、越界、形态、断链与孤岛，处置全部过用户拍板。
 disable-model-invocation: true
 ---
 
