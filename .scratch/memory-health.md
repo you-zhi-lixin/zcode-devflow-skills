@@ -1,6 +1,6 @@
 # 记忆健康台账
 
-一行一事：`日期｜类型｜内容`。类型：病（orient 转介/落后/孤岛候选）／收口（checkpoint 每票收口追加）／清账（memory-audit 处置完追加的分界线）。
+一行一事：`日期｜类型｜内容`。类型：病（orient 转介/落后/孤岛候选）／收口（checkpoint 每轮追加——有票记票数，无票记「轮 N」）／清账（memory-audit 处置完追加的分界线）／挂账（弹窗未获应答的内容性处置，逐条一行，拍板执行后划账）。
 
 2026-11-05｜病｜孤岛候选 draft-b76c5b20-c521-4dcb-94a7-c4c39dc82adf-7678799bea580718（全库唯一命中：zcode-devflow-skills/devflow 两关键词命中其 MEMORY.md 与 project-skill-suite-orient-checkpoint.md）→用户确认为同一项目，转介 /memory-audit 合并
 2026-11-05｜病｜32 个不可判读目录（10 个 1793* 时间戳＋2 个 default-＋2 个 project-＋18 个 draft-uuid-hex）孤岛无法排查，如实记「无法排查」而非「无孤岛」
