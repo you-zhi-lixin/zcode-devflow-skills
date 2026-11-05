@@ -1,6 +1,7 @@
 ---
 name: project-init
 description: 项目一次性初始化：新项目铺全套地基（tracker 地基＋AGENTS.md 协作地图＋首条项目记忆＋交代节奏），存量项目只补地图。
+license: MIT
 when_to_use: 仅当用户明确输入 /project-init 或要求「初始化项目」时运行——未经用户开口不得自行调用。
 disable-model-invocation: true
 ---

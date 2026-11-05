@@ -1,6 +1,7 @@
 ---
 name: checkpoint
 description: 收口沉淀：把本段工作里「下月还为真且 repo 查不到」的事实按纪律写入项目记忆，顺手把票收尾（勾验收框＋置终态），落盘后报变更清单。
+license: MIT
 when_to_use: 一票收口、一轮交付、会话收尾后适合跑；仅当用户明确喊 /checkpoint 或「更新项目记忆」时执行——未经用户开口不得自行调用。
 argument-hint: "可选：这轮最想让我记住什么（不填就由我自己盘点本次会话）"
 disable-model-invocation: true

@@ -1,6 +1,7 @@
 ---
 name: memory-audit
 description: 记忆库深度对账：对全部记忆文件做逐句核验，治理过时、矛盾、越界、形态、断链与孤岛，处置全部过用户拍板。
+license: MIT
 when_to_use: 每收口满 2-3 行（票或轮）、用户感觉 AI 开始犯常识错、或 /orient 转介时——由用户发起运行，未经用户开口不得自行调用。
 disable-model-invocation: true
 ---
