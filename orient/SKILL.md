@@ -31,7 +31,7 @@ when_to_use: 用户要在既有项目上开工时——新会话续接、隔天�
    - 远端票 labels 含 `wayfinder:` 前缀→同按决策票口径（open↔未认领、claimed↔有 assignee、resolved↔closed，`wayfinder:map` 为地图入口）。
    - 其余按 `docs/agents/issue-tracker.md` 词表（本地＝Status 行＋验收勾选；远端＝state＋labels＋assignee）。
    - 该词表读不到、或其中没有终态约定→按本文内嵌最小词表判定，简报注明口径来源：
-     - 本地＝Status 行＋验收勾选，终态 done
+     - 本地＝Status 行＋验收勾选，终态 done（Matt local 词表的 wontfix 是放弃非完结，不算已有终态约定）
      - wayfinder 票＝resolved
      - triage-labels.md 也读不到→ready-for-agent 按字面匹配；无任何状态词表时，非终态非 claimed 的本地票列为候选
    - 票面与记忆一致、但与 git/工作树矛盾，也算对账发现。

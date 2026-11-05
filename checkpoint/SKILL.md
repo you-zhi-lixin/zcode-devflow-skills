@@ -3,7 +3,6 @@ name: checkpoint
 description: 收口沉淀：把本段工作里「下月还为真且 repo 查不到」的事实按纪律写入项目记忆，并收尾相关票据（勾验收框＋置终态），落盘后报变更清单。
 license: MIT
 when_to_use: 一票收口、一轮交付、会话收尾后运行；仅当用户明确输入 /checkpoint 或「更新项目记忆」时执行——未经用户明示要求不得自行调用。
-argument-hint: "可选：这轮最想让我记住什么（不填就由我自己盘点本次会话）"
 disable-model-invocation: true
 ---
 
@@ -17,11 +16,11 @@ disable-model-invocation: true
 
 1. **盘点本段产出**：本会话的提交增量（以上次收口为基准）、票据状态变化、对话拍板、新坑、对工作方式的纠正。用户传了参数就以参数为重点。**源自本套件简报/变更清单的语句不算独立来源**，须回溯票/commit/用户原话。**会话经历过上下文压缩→对话不可靠**：以 git log/票面/diff 为准，对话项逐条确认，拿不准标「假设：」或不写。工作区有未提交改动→先请示是否 commit。
    **票收尾（经用户确认后当场做）**：交付已完成但验收框未勾/Status 未置终态→按 `docs/agents/issue-tracker.md` 词表回写。
-   - 本地实现票：勾框＋置 `Status: done`
+   - 本地实现票：勾框＋置 `Status: done`（Matt local 词表终态不含实现票完结——wontfix 是放弃，不据此判「已有终态约定」）
    - 远端实现票：先勾正文验收框（命令按 tracker 文档）再关闭
    - wayfinder 决策票：走 Resolve 全套——本地＝Answer＋`resolved`＋map.md 指针；远端＝按 tracker 文档 Resolve 节：答案评论＋关闭＋map 指针
    **台账（每轮）**：追加一行收口记录——有票记票数，无票记「轮 N」；commit message 未引用票号→提醒用户（不代改）。
-   **repo 外/不可达分支产物**：编排过子代理→向用户确认探索笔记等产物的去向（repo 外目录，或 wayfinder research/prototype 的用后即弃分支（throwaway branch）——分支会被 prune，指针无法保留内容）：票上已有指针的不再重复问指针，改问**内容本体要不要落 repo 交付存档**（判定性结论至少落一份）；本会话运行过 /handoff→同时问「要不要把便签路径留到票 Comments」。
+   **repo 外/不可达分支产物**：编排过子代理→向用户确认探索笔记等产物的去向（repo 外目录，或 wayfinder research/prototype 的用后即弃分支（throwaway branch）——分支会被 prune，指针无法保留内容）：票上已有指针的不再重复问指针，改问**内容本体要不要落 repo 交付存档**（判定性结论至少落一份）；本会话运行过 /handoff→核对便签路径已由 handoff 技能留到票 Comments，缺失才问。
 
 2. **过两问测试＋写入四问**（合同）：进度细节（票 done、测试数、commit 号）留 repo；半成品→提醒用户跑 /handoff，记忆侧不写；**ADR 级拍板**（难逆转＋真权衡）→先问用户要不要建 ADR（调用 domain-modeling），拒了再进记忆；纠正若已进 CODING_STANDARDS.md/自动检查→repo 已记录，记忆留指针；值得写的归四种类型标落点；流水账进 repo 交付存档文件，记忆留指针；猜测标「假设：」。
 

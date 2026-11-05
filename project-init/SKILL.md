@@ -18,8 +18,8 @@ disable-model-invocation: true
    tracker 缺失→告知用户先跑 /setup-matt-pocock-skills（手动技能，本技能不得代为调用），**完成后重新输入 /project-init 继续**（重跑安全，已铺部分自动跳过）；用户不跑→向用户说明后果：工程技能会阻塞要求配置，记忆套件照常可用（票走 `.scratch/` 或无票）。tracker：记录任务清单的载体。
    存量项目→走第 2、4 步（只铺地图＋告知日常节奏，跳过 tracker 分岔与 seed）。
 
-2. **铺 AGENTS.md 协作地图**：固定写 `<repo>/AGENTS.md`——ZCode 官方唯一自动载入的指令文件（CLAUDE.md 专用 Claude Code，ZCode 不保证载入）。项目只有 CLAUDE.md→新建 AGENTS.md，弹窗向用户说明分工：「记忆套件地图住 AGENTS.md，每次开工自动读；CLAUDE.md 留给读它的其他工具，不动。」「记忆套件」子块只在 CLAUDE.md 里→迁入 AGENTS.md，CLAUDE.md 侧旧块经用户确认后删。
-   `## Agent skills` 块不存在则自建，块内追加「记忆套件」子块（已存在则原位更新；周边内容零覆盖）。没跑过 Matt setup→先建议跑 setup 再回来执行本步（第 1 步已明确拒绝的不再问）；此后重跑过 setup→复查子块是否仍在；子块被后续 setup 覆盖丢失→补回。
+2. **铺 AGENTS.md 协作地图**：固定写 `<repo>/AGENTS.md`——ZCode 官方唯一自动载入的指令文件（CLAUDE.md 专用 Claude Code，ZCode 不保证载入）。项目只有 CLAUDE.md→新建 AGENTS.md，弹窗向用户说明分工：「记忆套件地图住 AGENTS.md，每次开工自动读；CLAUDE.md 留给读它的其他工具，不动。」Matt setup 写进 CLAUDE.md 的子块不被 ZCode 载入，但其技能按路径读 `docs/agents/*.md`，不受影响——只向用户说明，不迁移。「记忆套件」子块只在 CLAUDE.md 里→迁入 AGENTS.md，CLAUDE.md 侧旧块经用户确认后删。
+   `## Agent skills` 块不存在则自建，块内追加「记忆套件」子块（已存在则原位更新；周边内容零覆盖）。没跑过 Matt setup→先建议跑 setup 再回来执行本步（第 1 步已明确拒绝的不再问）；此后重跑过 setup→复查子块是否仍在；子块被后续 setup 或内置 /init 覆盖丢失→补回。
 
    ```markdown
    ### 记忆套件
