@@ -6,11 +6,14 @@
 
 1. 装 Node.js（去 nodejs.org 下载安装包一路下一步；装过就跳过）
 2. 终端敲 `npx skills add mattpocock/skills`，装 Matt 技能集，并跑一次 `/setup-matt-pocock-skills` 配置 tracker（本套件可独立运行：没配 tracker 时票走 `.scratch/` 本地文件）
-3. 在终端（Windows 用 Git Bash）进入本套件文件夹，敲：
+3. 安装本套件（二选一，**不可并用**——`~/.zcode/skills` 本地副本会永久遮蔽插件版，装了插件后请删除本地副本）：
+   - **插件方式（推荐）**：ZCode → 设置 → 插件管理 → 发现页 → **＋添加插件市场** → 填本仓库（GitHub `you-zhi-lixin/zcode-devflow-skills` 或本地文件夹）→ 安装「ZCode DevFlow Skills」。四个技能与三条 /命令（`/project-init`、`/checkpoint`、`/memory-audit`）随插件一起装好。
+   - **手动方式**：终端（Windows 用 Git Bash）进入本套件文件夹，敲：
 
-   ```bash
-   cp -r project-init orient checkpoint memory-audit ~/.zcode/skills/
-   ```
+     ```bash
+     cp -r skills/project-init skills/orient skills/checkpoint skills/memory-audit ~/.zcode/skills/
+     mkdir -p ~/.zcode/commands && cp commands/*.md ~/.zcode/commands/
+     ```
 
 4. 打开你的项目，输入 `/project-init`（输入 / 开头的命令就是在指挥 AI 干活）——它会带你铺好地基、告诉你以后每天怎么用。已有项目也可以跑：它会识别存量项目，只补 AI 协作地图，不动你的代码。
 
@@ -24,12 +27,12 @@
 
 | 技能 | 节奏 | 职能 | 触发 |
 |---|---|---|---|
-| [`project-init`](project-init/SKILL.md) | 每项目一次 | 接通 Matt setup 的 tracker 地基 ＋ 铺 AGENTS.md 记忆套件地图 ＋ seed 首条项目记忆 ＋ 交代日常节奏（存量项目＝只补地图） | 手动 `/project-init` |
-| [`orient`](orient/SKILL.md) | 每会话开始 | 开工定位：读记忆 → 对照票据/git 对账 → 简报（当前阶段/能开工的票/待拍板/建议下一步）→ 轻体检 ＋ 孤岛扫描 | 自动触发，也可手动 `/orient` |
-| [`checkpoint`](checkpoint/SKILL.md) | 每票收口/会话收尾 | 收口沉淀：两问测试过滤 → 查重与现状条目整文件重写 → 顺手把票收尾（勾验收框＋置终态）→ 落盘 → 报变更清单 | 手动 `/checkpoint` |
-| [`memory-audit`](memory-audit/SKILL.md) | 每收口 2-3 张票 | 记忆深度对账：全库逐句核验（过时/矛盾/越界/形态/断链），治理 ＋ 孤岛合并 ＋ 重建索引，处置全过拍板 | 手动 `/memory-audit` |
+| [`project-init`](skills/project-init/SKILL.md) | 每项目一次 | 接通 Matt setup 的 tracker 地基 ＋ 铺 AGENTS.md 记忆套件地图 ＋ seed 首条项目记忆 ＋ 交代日常节奏（存量项目＝只补地图） | 手动 `/project-init` |
+| [`orient`](skills/orient/SKILL.md) | 每会话开始 | 开工定位：读记忆 → 对照票据/git 对账 → 简报（当前阶段/能开工的票/待拍板/建议下一步）→ 轻体检 ＋ 孤岛扫描 | 自动触发，也可手动 `/orient` |
+| [`checkpoint`](skills/checkpoint/SKILL.md) | 每票收口/会话收尾 | 收口沉淀：两问测试过滤 → 查重与现状条目整文件重写 → 顺手把票收尾（勾验收框＋置终态）→ 落盘 → 报变更清单 | 手动 `/checkpoint` |
+| [`memory-audit`](skills/memory-audit/SKILL.md) | 每收口 2-3 张票 | 记忆深度对账：全库逐句核验（过时/矛盾/越界/形态/断链），治理 ＋ 孤岛合并 ＋ 重建索引，处置全过拍板 | 手动 `/memory-audit` |
 
-共享纪律合同 [`checkpoint/references/memory-discipline.md`](checkpoint/references/memory-discipline.md) 是四个技能共用的单一真相源：四层地盘、两问测试、写入四问、重写律、索引律、体检红线、记忆健康台账。
+共享纪律合同 [`skills/checkpoint/references/memory-discipline.md`](skills/checkpoint/references/memory-discipline.md) 是四个技能共用的单一真相源：四层地盘、两问测试、写入四问、重写律、索引律、体检红线、记忆健康台账。
 
 ## 完整流程
 

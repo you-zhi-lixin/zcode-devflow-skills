@@ -1,0 +1,7 @@
+{
+  "name": "zcode-devflow-skills",
+  "version": "6.6.0",
+  "description": "Matt Pocock pipeline companion: memory and reconciliation layer (orient / checkpoint / memory-audit / project-init)",
+  "skills": "./skills",
+  "commands": "./commands"
+}

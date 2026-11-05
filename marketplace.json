@@ -1,0 +1,15 @@
+{
+  "name": "devflow-market",
+  "plugins": [
+    {
+      "name": "zcode-devflow-skills",
+      "source": ".",
+      "version": "6.6.0",
+      "description": "Matt Pocock pipeline companion: memory and reconciliation layer",
+      "displayName": "ZCode DevFlow Skills",
+      "displayName_i18n": { "zh-CN": "ZCode DevFlow 技能套件" },
+      "description_i18n": { "zh-CN": "Matt Pocock 管线外挂的记忆与对账层：开工定位、收口沉淀、记忆对账、项目初始化" },
+      "category": "productivity"
+    }
+  ]
+}
