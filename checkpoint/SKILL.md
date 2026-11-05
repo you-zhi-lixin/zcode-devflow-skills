@@ -15,11 +15,11 @@ disable-model-invocation: true
 ## 过程
 
 1. **盘点本段产出**：本会话的提交增量（以上次收口为基准）、票据状态变化、对话拍板、新坑、对工作方式的纠正。用户传了参数就以参数为重点。**源自本套件简报/变更清单的语句不算独立来源**，须回溯票/commit/用户原话。**会话经历过上下文压缩→对话不可靠**：以 git log/票面/diff 为准，对话项逐条确认，拿不准标「假设：」或不写。工作区有未提交改动→先请示是否 commit。
-   **票收尾（经用户确认后当场做）**：活已干完但验收框没勾/Status 未置终态→按 `docs/agents/issue-tracker.md` 词表回写——本地实现票勾框＋置 `Status: done`；wayfinder 决策票走 Resolve 全套（Answer＋`resolved`＋map.md 指针）；远端按 tracker 文档关闭。
+   **票收尾（经用户确认后当场做）**：活已干完但验收框没勾/Status 未置终态→按 `docs/agents/issue-tracker.md` 词表回写——本地实现票勾框＋置 `Status: done`；远端实现票先勾正文验收框（命令按 tracker 文档）再关闭；wayfinder 决策票走 Resolve 全套（本地＝Answer＋`resolved`＋map.md 指针；远端＝按 tracker 文档 Resolve 节：答案评论＋关闭＋map 指针）。
    **台账（每轮）**：追加一行收口记录——有票记票数，无票记「轮 N」；commit message 未引用票号→提醒用户（不代改）。
-   **repo 外产物指针**：编排过子代理→向用户确认探索笔记等 repo 外产物的路径是否值得留一行指针进 repo（spec 或票的 Comments）——不留，压缩后即失联。
+   **repo 外/不可达分支产物**：编排过子代理→确认探索笔记等产物（repo 外目录，或 wayfinder research/prototype 的 throwaway branch——分支会被 prune，指针救不了内容）的处置：票上已有指针的不再重复问指针，改问**内容本体要不要落 repo 交付存档**（判定性结论至少落一份）；本会话喊过 /handoff→顺带问「要不要把便签路径留到票 Comments」。
 
-2. **过两问测试＋写入四问**（合同）：进度细节（票 done、测试数、commit 号）留 repo；半成品→提醒用户跑 /handoff，记忆侧不写；值得写的归四种类型标落点；流水账进 repo 交付存档文件，记忆留指针；猜测标「假设：」。
+2. **过两问测试＋写入四问**（合同）：进度细节（票 done、测试数、commit 号）留 repo；半成品→提醒用户跑 /handoff，记忆侧不写；**ADR 级拍板**（难逆转＋真权衡）→先问用户要不要建 ADR（调 domain-modeling），拒了再进记忆；纠正若已进 CODING_STANDARDS.md/自动检查→repo 已记录，记忆留指针；值得写的归四种类型标落点；流水账进 repo 交付存档文件，记忆留指针；猜测标「假设：」。
 
 3. **查重与重写**：候选逐条对 MEMORY.md 和相近记忆查——**MEMORY.md 缺失/烂掉时先 `ls` 记忆目录逐文件判重，不得仅凭空索引新建**。覆盖同一事实→更新原文件（description 与索引钩子句同步）；被推翻→修正或删除＋同步索引。现状条目按重写律整文件重写：只装「现在长什么样＋非显而易见的挂账」，✅ 与进度细节清出去。拿不准删不删、翻不翻说法的→弹窗带推荐拍板。
 

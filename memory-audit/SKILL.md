@@ -15,7 +15,7 @@ disable-model-invocation: true
 
 ## 过程
 
-1. **盘点**：列记忆目录全部文件（行数/字节），读 MEMORY.md 与每条记忆全文——全库扫描与证据 grep 派只读子代理（每轮 ≤2 并发，可多轮，只回结论），避免主窗口塞满文件内容。备好仓库现实：票据状态（按 `docs/agents/issue-tracker.md` 词表；读不到→按 orient 内嵌最小词表）、`git log --oneline -30`、现行 spec/设计文档。
+1. **盘点**：列记忆目录全部文件（行数/字节），读 MEMORY.md 与每条记忆全文——全库扫描与证据 grep 派只读子代理（每轮 ≤2 并发，可多轮，只回结论），避免主窗口塞满文件内容。备好仓库现实：票据状态（含票面 Comments；按 `docs/agents/issue-tracker.md` 词表；读不到或无终态约定→按 orient 内嵌最小词表）、`git log --oneline -30`、现行 spec/设计文档（含远端 spec 票正文）、repo 有 GLOSSARY.md／docs/adr/／`.out-of-scope/` 则一并纳入。
 
 2. **逐文件核验**（只读）。五类检查：
    - **过时**：断言对照仓库逐句验证，记「记忆:行 ↔ 仓库:行」证据；超 30 天未决的「假设：」列入

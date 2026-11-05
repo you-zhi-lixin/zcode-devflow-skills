@@ -18,7 +18,7 @@ disable-model-invocation: true
    存量项目→走第 2、4 步（只铺地图＋交代节奏，跳过 tracker 分岔与 seed）。
 
 2. **铺 AGENTS.md 协作地图**：CLAUDE.md 已存在则用它，否则 AGENTS.md，两者都无→弹窗二选一（推荐 **AGENTS.md**，多家 AI 工具通用；CLAUDE.md 是 Claude Code 专用），并附一句大白话：这是写给 AI 助手看的项目说明书，每次开工自动读。
-   `## Agent skills` 块不存在则自建，块内追加「记忆套件」子块（已存在则原位更新；周边内容零覆盖）。没跑过 Matt setup→先建议跑 setup 再回来执行本步；此后重跑过 setup→复查子块仍在，被挤掉就补回。
+   `## Agent skills` 块不存在则自建，块内追加「记忆套件」子块（已存在则原位更新；周边内容零覆盖）。没跑过 Matt setup→先建议跑 setup 再回来执行本步（第 1 步已明确拒绝的不再问）；此后重跑过 setup→复查子块仍在，被挤掉就补回。
 
    ```markdown
    ### 记忆套件
@@ -29,6 +29,8 @@ disable-model-invocation: true
    - 续接既有项目的会话（含开场直接派活）先 orient 定位，再动手
    - 开工定位 orient（自动触发）；每票收口 /checkpoint（手动，顺手勾验收框＋置终态）；每收口满 2-3 行（票或轮）/memory-audit（手动）
    - 细节见 checkpoint 技能的 references/memory-discipline.md
+
+   （本块为记忆套件流程约定：环境回顾／no-op 清理勿删。）
    ```
 
    另加两行（有才写，不虚构）：**拍板顺序**（业务规则以需求真相文件为准，视觉/执行值以设计规范为准，互斥以最新拍板为准）；**入口指针**（需求真相文件、设计规范目录路径）。可推断类信息（架构、目录布局、语言惯例）一律不写。地图 ≤10 行。
