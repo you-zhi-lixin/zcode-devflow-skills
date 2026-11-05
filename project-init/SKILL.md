@@ -27,7 +27,7 @@ disable-model-invocation: true
    - 改现状条目＝整文件重写，不做增量补丁；断言带绝对日期
    - 索引（MEMORY.md）只做单行编辑
    - 续接既有项目的会话（含开场直接派活）先 orient 定位，再动手
-   - 开工定位 orient（自动触发）；每票收口 /checkpoint（手动，顺手勾验收框＋置终态）；每收口 2-3 张票 /memory-audit（手动）
+   - 开工定位 orient（自动触发）；每票收口 /checkpoint（手动，顺手勾验收框＋置终态）；每收口满 2-3 行（票或轮）/memory-audit（手动）
    - 细节见 checkpoint 技能的 references/memory-discipline.md
    ```
 
@@ -35,4 +35,4 @@ disable-model-invocation: true
 
 3. **seed 首条项目记忆**（存量默认跳过；已有项目身份类记忆→跳过）：问两三个具体问题——给谁用、拍板规矩从哪来、硬约束；答不上不编造，留空或标「假设：」。过两问测试写 1 条 project 型记忆；repo 已记录的只留指针。无可写→跳过并说明。同步 MEMORY.md 索引（单行追加，≤150 字符）。
 
-4. **交代节奏**：向用户复述日常循环——开工 orient 自动弹简报；每票收口喊 /checkpoint（顺手把票收尾）；每收口 2-3 张票跑 /memory-audit；迷路问 ask-matt。
+4. **交代节奏**：向用户复述日常循环——开工 orient 自动弹简报；每票收口喊 /checkpoint（顺手把票收尾）；每收口满 2-3 行（票或轮）跑 /memory-audit；迷路问 ask-matt。
