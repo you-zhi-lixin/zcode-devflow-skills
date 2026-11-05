@@ -1,38 +1,51 @@
 ---
 name: orient
-description: 开工定位：读记忆→对照票据与 git 对账→输出 standup 简报（当前阶段/能开工的票/待拍板/建议下一步），顺手体检记忆小病，病多或孤岛疑似转介 /memory-audit。
+description: 开工定位：读记忆→对照票据与 git 对账→输出 standup 简报（当前阶段/能开工的票/待拍板/建议下一步），并体检记忆小病，病多或孤岛疑似转介 /memory-audit。
 license: MIT
-when_to_use: 用户要在既有项目上开工时——新会话续接、隔天再战、换窗口、开场直接派活（都先定位再动手）；全新项目和一次性问答不用。
+when_to_use: 用户要在既有项目上开工时——新会话续接、隔天再战、换窗口、开场直接派活，或开场问「我们到哪了／接着干」（都先定位再动手）；全新项目和一次性问答不用。
 ---
 
 # orient（开工定位）
 
-用户要在既有项目上开工——新会话续接、隔天再战、换窗口、开场直接派活。跑完本技能，用户不用再问「我们到哪了」。简报第一行用大白话交代来意：「开工前先帮你对了下进度——只看不改；如有小修建议，会先弹窗问你。」
+用户要在既有项目上开工——新会话续接、隔天再战、换窗口、开场直接派活。简报第一行向用户复述来意（口语）：「开工前先帮你对了下进度——只看不改；如有小修建议，会先弹窗问你。」
 
-先读 [`../checkpoint/references/memory-discipline.md`](../checkpoint/references/memory-discipline.md)（与本技能同级的 checkpoint 技能目录下；读不到→停下告知用户，可从套件 git 副本恢复）。四层地盘与体检红线都在那份合同里。
+先读 [`../checkpoint/references/memory-discipline.md`](../checkpoint/references/memory-discipline.md)（与本技能同级的 checkpoint 技能目录下；读不到→停下告知用户，尝试从套件 git 副本恢复）。四层地盘与体检红线以该合同为准。
 
 ## 过程
 
-1. **定位记忆**：MEMORY.md 索引通常随会话自动载入（未载入或不确定→先 Read MEMORY.md／`ls` 核对）——逐条判断读不读全文，读索引指到的 project 型现状条目全文。
+1. **定位记忆**：MEMORY.md 索引通常随会话自动载入（未载入或不确定→先 Read MEMORY.md／`ls` 核对）——索引行仅用于定位：project 型现状条目读全文，其余条目不读全文。
    - **索引空 ≠ 库空**：`ls` 本项目 memory 目录，有 .md 文件而索引无对应行＝索引丢失/损坏→逐文件直读 frontmatter 定位现状条目（口径标「来自记忆，本轮还没核对」），转介 /memory-audit 重建索引。
-   - memory 根定位不到（子代理、系统提示无 memory 说明）→ Bash `ls ~/.zcode/cli/memories/projects/` 按**完整工作区名（含哈希段）**匹配；禁止用泛前缀（如 draft）。仍找不到→区分「ls 报错」（记忆根不可达，简报注明）与「ls 为空」（按记忆库为空处理，走第 2、6 步）。
+   - memory 根定位不到（子代理、系统提示无 memory 说明）→ Bash `ls ~/.zcode/cli/memories/projects/` 按**完整工作区名（含哈希段）**匹配；禁止用泛前缀（如 draft），泛前缀会命中其他项目的记忆目录。仍找不到→区分「ls 报错」（记忆根不可达，简报注明）与「ls 为空」（按记忆库为空处理，走第 2、6 步）。
    - **索引行指向的文件不存在（任何类型记忆）＝「索引断链」小病**：该事实按空缺处理，不拿钩子句顶替全文，记入第 7 步清单；经用户确认删该索引行，或从备份找回文件（优先用户自选备份，次 %TEMP% 演习备份；找回后核对内容与索引口径一致）。
 
-2. **孤岛扫描（空库也要做）**：记忆为空 ≠ 全新项目——搬家/改名/换打开方式正是孤岛诞生场景。初筛 `grep -il`（只回文件名，不读其他项目记忆内容）；关键词来源：repo 根目录名→票据路径与标题中的专名→AGENTS.md 里的项目名（无 repo 用后两者），排除「中文/记忆/部署」类通用词，**≥2 个不同关键词命中同一目录**才列候选。**先查全局台账 island-checks.md（记忆根下）**：已有结论的目录跳过，不再弹窗。候选弹窗（多候选可合并一窗）**附命中关键词列表**（词×命中处数，不展示对方内容）；用户确认后才 Read 对方 MEMORY.md 摘要。确认/排除结论落 island-checks.md（`日期｜目录｜结论`），不落 repo 台账。目录名不可判读的库（draft-*/纯数字）如实记「无法排查」，不得报「无孤岛」。
+2. **孤岛扫描（空库也要做；孤岛多产生于搬家/改名/换打开方式）**：初筛 `grep -il`（只回文件名，不读其他项目记忆内容）；关键词来源：repo 根目录名→票据路径与标题中的专名→AGENTS.md 里的项目名（无 repo 用后两者），排除「中文/记忆/部署」类通用词，**≥2 个不同关键词命中同一目录**才列候选。**先查全局台账 island-checks.md（记忆根下）**：已有结论的目录跳过，不再弹窗。候选弹窗（多候选可合并一窗）**附命中关键词列表**（词×命中处数，不展示对方内容）；用户确认后才 Read 对方 MEMORY.md 摘要。确认/排除结论落 island-checks.md（`日期｜目录｜结论`），不落 repo 台账。目录名不可判读的库（draft-*/纯数字）如实记「无法排查」，不得报「无孤岛」——假阴性会使用户跳过本该做的排查。
    **空库先判新旧**：repo 已有记忆套件地图或成套票据，或 git 史 ≥5 笔提交＝veteran 空库（疑似换机/重装/误删）→简报给两条路：从旧机/备份拷回 memory 目录（`~/.zcode/cli/memories/projects/<项目目录>/memory/`），或明示放弃按第 6 步重建。真新项目→走第 6 步。
 
-3. **对账**：拿记忆对照仓库现实——票据状态（含票面 Comments）、spec/计划文档（含远端 spec 票正文）、`git log --oneline -15`；repo 有 GLOSSARY.md／docs/adr/、`.out-of-scope/` 存在则一并纳入。先识别票种：`.scratch/<目录>/` 内含 `map.md`→按 wayfinder 词表（open/claimed/resolved，无 Status 行＝open，`Type:` 行注明票种；map.md 是整组开关，组内混实现票时报告用户）；远端票 labels 含 `wayfinder:` 前缀→同按决策票口径（open↔未认领、claimed↔有 assignee、resolved↔closed，`wayfinder:map` 为地图入口）；其余按 `docs/agents/issue-tracker.md` 词表（本地＝Status 行＋验收勾选；远端＝state＋labels＋assignee）——**该文件读不到、或其中没有终态约定→按本文内嵌最小词表判定**（本地＝Status 行＋验收勾选，终态 done；wayfinder 票＝resolved；triage-labels.md 也读不到→ready-for-agent 按字面匹配，无任何状态词表时非终态非 claimed 的本地票列为候选），简报注明口径来源。票面与记忆一致、但与 git/工作树矛盾，也算对账发现。
+3. **对账**：拿记忆对照仓库现实——票据状态（含票面 Comments）、spec/计划文档（含远端 spec 票正文）、`git log --oneline -15`；repo 有 GLOSSARY.md／docs/adr/、`.out-of-scope/` 存在则一并纳入。先识别票种：
+   - `.scratch/<目录>/` 内含 `map.md`→按 wayfinder 词表（open/claimed/resolved，无 Status 行＝open，`Type:` 行注明票种；map.md 是整组开关，组内混实现票时报告用户）。
+   - 远端票 labels 含 `wayfinder:` 前缀→同按决策票口径（open↔未认领、claimed↔有 assignee、resolved↔closed，`wayfinder:map` 为地图入口）。
+   - 其余按 `docs/agents/issue-tracker.md` 词表（本地＝Status 行＋验收勾选；远端＝state＋labels＋assignee）——**该文件读不到、或其中没有终态约定→按本文内嵌最小词表判定**（本地＝Status 行＋验收勾选，终态 done；wayfinder 票＝resolved；triage-labels.md 也读不到→ready-for-agent 按字面匹配，无任何状态词表时非终态非 claimed 的本地票列为候选），简报注明口径来源。
+   - 票面与记忆一致、但与 git/工作树矛盾，也算对账发现。
 
 4. **轻体检**：按合同「体检红线」扫行级小病——索引行超 150 字符（按字符数）、断言缺日期锚、description 或索引钩子句与正文脱节（缺正文的关键限定＝脱节；措辞风格差异不算）、**索引↔文件双向核对**（每条索引行验证文件存在；文件无索引行＝孤儿，转介 audit 补行）。空库报「记忆库不存在」，不报「0 病」。≤3 条→列清单走第 7 步；现状条目超 10KB、混入进度细节/✅、内部矛盾、孤岛待合并→只报告不动手，转介 /memory-audit。
 
 5. **输出 standup 简报**（五段标题固定）：
    - **当前阶段**：一两句，带日期锚与证据；来自记忆未经核验的口径标「（来自记忆，本轮还没核对）」
-   - **现在能开工的票**：决策票可开工＝open＋无 blocker＋无人认领，建议下一步给 `/wayfinder`（票号｜标题｜Question 摘要）；实现票可开工＝ready-for-agent（按 triage-labels 映射）＋blocker 闭环＋无人认领（本地 Status 非 claimed 且无 Assignee/Claimed by 字段／远端无 assignee）＋git 无完成迹象（log 无票号的**词边界**匹配、无触及该票涉及路径的提交；**票据文件自身路径豁免**——scaffold commit 含票据不算）＋验收框未全勾（**全勾＋非终态＝票内漂移**）＋**非 spec 父票**（无验收框且被其他票以 Parent/sub-issue 引用＝spec 父票→列「待拆票」，建议 /to-tickets）。漂移（git 迹象或票内矛盾）不进队列，列入对账发现，请示按 tracker 词表补置终态。needs-info／needs-triage／ready-for-human 不可开工，另列原因（优先引票面原文）。实现票每张一行「票号｜标题｜验收要点」
+   - **现在能开工的票**：
+     - 决策票可开工＝open＋无 blocker＋无人认领；建议下一步给 `/wayfinder`（票号｜标题｜Question 摘要）。
+     - 实现票可开工＝ready-for-agent（按 triage-labels 映射）＋blocker 闭环＋无人认领（本地 Status 非 claimed 且无 Assignee/Claimed by 字段／远端无 assignee）＋git 无完成迹象（log 无票号的**词边界**匹配、无触及该票涉及路径的提交；**票据文件自身路径豁免**——scaffold commit 含票据不算）＋验收框未全勾（**全勾＋非终态＝票内漂移**）＋**非 spec 父票**（无验收框且被其他票以 Parent/sub-issue 引用＝spec 父票→列「待拆票」，建议 /to-tickets）。
+     - 漂移（git 迹象或票内矛盾）不进队列，列入对账发现，经用户拍板后按 tracker 词表补置终态。
+     - needs-info／needs-triage／ready-for-human 不可开工，另列原因（优先引票面原文）。
+     - 实现票每张一行「票号｜标题｜验收要点」。
    - **等你拍板的事**：🟡 记忆挂账＋票正文开放问题，重复的合并
    - **建议下一步**：具体到命令——决策票 `/wayfinder`；实现票 `/implement .scratch/<功能>/issues/NN-<slug>.md`（远端票写 `/implement <票号或URL>`）；无票项目给基于挂账或最近 commit 的动作；不确定走哪条→问 ask-matt
-   - **记忆健康**：一行（元素多时折 ≤3 行短列表）——轻病 N 条／转介与否／孤岛结论；现状条目最新日期锚早于最近 5 笔 commit（同日的再比记忆文件更新时间，零变更收口后以台账最新收口行为准；空库不适用）→简报顶部横幅「记忆落后，请跑 /checkpoint」＋可复制命令；同一病×同一对象连续 ≥2 次未清→升级告警；距上次清账的收口行满 2-3（票或轮）→建议 /memory-audit；项目无「记忆套件」地图→提示补跑 /project-init（存量模式）
+   - **记忆健康**：一行（元素多时折 ≤3 行短列表）——轻病 N 条／转介与否／孤岛结论。
+     - 现状条目最新日期锚早于最近 5 笔 commit（同日的再比记忆文件更新时间，零变更收口后以台账最新收口行为准；空库不适用）→简报顶部横幅「记忆落后，请跑 /checkpoint」＋可复制命令。
+     - 同一病×同一对象连续 ≥2 次未清→升级告警。
+     - 距上次清账的收口行满 2-3（票或轮）→建议 /memory-audit。
+     - 项目无「记忆套件」地图→提示补跑 /project-init（存量模式）。
 
-6. **全新项目分支**：真新项目（repo 也新）→简报从票据与 git 重建（仍按五段输出，缺来源的段注明），建议收尾 /checkpoint 建库；连票据都没有→建议 /project-init。重建先收割 repo 影子（AGENTS.md 拍板顺序与入口指针、spec 里的拍板），repo 有的直接引用；征询只留 repo 与记忆都查不到的项。
+6. **全新项目分支**：真新项目（repo 也新）→简报从票据与 git 重建（仍按五段输出，缺来源的段注明），建议收尾 /checkpoint 建库；连票据都没有→建议 /project-init。重建先收割 repo 影子：repo 已沉淀而记忆缺的约定（AGENTS.md 拍板顺序与入口指针、spec 里的拍板）——repo 有的直接引用，征询只留 repo 与记忆都查不到的项。
 
 7. **小修**：修复清单一批弹窗确认（推荐项放第一）→拍板后当场改记忆文件与索引（MEMORY.md 只做单行编辑）。
    完成＝清单每条要么已执行、要么用户明说挂起。
