@@ -14,9 +14,9 @@ orient（校验侧）、checkpoint（写入侧）、memory-audit（对账侧）�
 
 **票据终态约定**（repo 层，orient 对账与 checkpoint 收尾共用）：实现票收口＝验收勾选全勾＋Status 置终态——本地票本套件约定 `Status: done`，wayfinder 决策票＝`resolved`（走其 Resolve 全套），远端按 `docs/agents/issue-tracker.md` 关闭。
 
-**记忆健康台账**（`.scratch/memory-health.md`，repo 层）：预警器的唯一计数器，机器可查。一行一事：`日期｜类型｜内容`，类型取 `病`（orient 转介/落后/孤岛候选）／`收口`（checkpoint **每轮**追加一行：有票记票数，无票记「轮 N」）／`清账`（memory-audit 处置完追加的分界线）。orient 数「同一病名自上次清账起出现次数」≥2→简报升级告警，收口行满 2-3 行（票或轮）→建议跑 /memory-audit；孤岛扫描的排除结论也落此账，避免每次开工重复弹窗。无关联 repo 的会话落当前工作目录 `.scratch/`，并在简报注明落点。
+**记忆健康台账**（`.scratch/memory-health.md`，repo 层）：预警器的唯一计数器，机器可查。一行一事：`日期｜类型｜内容`，类型取 `病`（orient 转介/落后/孤岛候选）／`收口`（checkpoint **每轮**追加一行：有票记票数，无票记「轮 N」）／`清账`（memory-audit 处置完追加的分界线）。orient 数「同一病名×同一对象自上次清账起出现次数」≥2→简报升级告警，收口行满 2-3 行（票或轮）→建议跑 /memory-audit；孤岛扫描的排除结论也落此账，避免每次开工重复弹窗。无关联 repo 的会话落当前工作目录 `.scratch/`，并在简报注明落点。孤岛裁决（确认/排除/待合并/已合并）不记 repo 台账，归记忆根全局台账 island-checks.md。
 
-**记忆孤岛**：同项目换工作区（搬目录/改名/换打开方式）会另起一套记忆目录。位置在系统提示 memory 说明所指的根下（Bash 查 `~/.zcode/cli/memories/projects/`；用 Read 读候选文件时展开为 Windows 绝对路径）。orient 负责发现，/memory-audit 负责合并（带防护：合并前复述两库代表记忆供用户指认＋本库留溯源行＋不可逆处置推荐项默认保守）。
+**记忆孤岛**：同项目换工作区（搬目录/改名/换打开方式）会另起一套记忆目录。位置在系统提示 memory 说明所指的根下（Bash 查 `~/.zcode/cli/memories/projects/`；用 Read 读候选文件时展开为 Windows 绝对路径）。orient 负责发现，/memory-audit 负责合并（带防护：合并前复述两库代表记忆供用户指认＋本库留溯源行＋不可逆处置推荐项默认保守）。裁决落记忆根全局台账 `island-checks.md`（与各项目 memory 目录平级）：一行一事 `日期｜目录名｜结论`，orient/audit 扫描先查它——已有结论的目录不再重复弹窗（跨窗口防重复的唯一稳定落点：孤岛诞生于换工作区，裁决不能留在会随窗口漂移的 repo 台账里）。
 
 ## 两问测试（什么配进平台记忆）
 
