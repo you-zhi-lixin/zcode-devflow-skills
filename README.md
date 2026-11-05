@@ -76,6 +76,8 @@ grill-with-docs →（research / prototype 旁路）→ to-spec → to-tickets
 - **孤岛防御**：记忆按项目文件夹分开存放，换文件夹＝新空库。orient 每次开工扫旧库（空库也扫，初筛只回文件名不读内容），memory-audit 负责合并（合并前复述两库代表记忆供指认＋本库留溯源行，误合并可回滚）。
 - **防并发互踩**：落盘前重读＋写后回读，MEMORY.md 只做单行编辑（唯一例外＝audit 的重建索引，过拍板）。
 - **纪律全域化**：AGENTS.md 记忆套件地图写明「一切记忆写入（含平时主动写入）过两问测试＋写入四问」＋重写律短规，用每会话载入的文件约束平台常驻写入行为。
+- **弹窗未应答分级兜底**（v6.7）：弹窗未获应答不算拍板——形式性修复（不改动断言含义）照推荐执行并标注「未应答·按推荐」；内容性处置（动断言／删文件／合并）一律挂起留账，orient 简报重提。
+- **不做 hook**（v6.8 决策）：平台虽支持插件 hook（`hooks/hooks.json`，七事件），但 hook 安装即对全部用户全局生效，与「手动触发为主」（checkpoint/audit 禁模型自调）和「上下文是有限资源」两条哲学相反；`mcpServers`/`userConfig` 同理不引入。触发可靠性靠 when_to_use 措辞与 AGENTS.md 地图，不靠平台强制。
 
 > 设计依据：对 Jesse Vincent、Anthropic 官方、github/spec-kit、BMAD-METHOD、Cline Memory Bank、Ralph loop、Manus、AI Hero 等业界实践的三路调研，并经多轮独立子代理评审修复（fresh eyes 评审法）。
 
