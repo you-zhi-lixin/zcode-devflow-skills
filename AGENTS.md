@@ -9,6 +9,7 @@ ZCode 插件（devflow-market）：衔接 Matt Pocock 技能管线（grilling �
 | `skills/{orient,checkpoint,memory-audit,project-init}/SKILL.md` | 四个技能，正文全部简体中文 |
 | `skills/checkpoint/references/memory-discipline.md` | **单一真相源**：共享纪律合同（两问测试／写入四问／重写律／四层地盘／票据终态与票种口径／体检红线／记忆健康台账／拍板弹窗兜底） |
 | `skills/*/references/*.md` | 技能附属分支细则（如 `orient/references/empty-library.md`）——随所属技能一起改，不跨技能引用 |
+| `docs/matt-interlock.md` | Matt 咬合规则全文（AGENTS.md 正文只留指针）——动技能文本前必读 |
 | `commands/*.md` | 四条薄壳 /命令（orient、checkpoint、memory-audit、project-init）：frontmatter（description／argument-hint／skills）＋一行挂载技能＋`$ARGUMENTS` |
 | `.zcode-plugin/plugin.json`、`marketplace.json` | 插件与市场清单；**版本号两处必须同步改** |
 | `.scratch/memory-health.md` | 记忆健康台账：只追加、不改历史行（一行一事：`日期｜类型｜内容`） |
