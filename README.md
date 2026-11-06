@@ -78,8 +78,9 @@ grill-with-docs →（research / prototype 旁路）→ to-spec → to-tickets
 - **孤岛防御**（治换文件夹丢记忆）：orient 每次开工扫旧库，audit 带防护合并（复述供指认＋溯源行，误合并可回滚）。
 - **防并发互踩**（治多入口写坏）：落盘前重读＋写后回读，MEMORY.md 只做单行编辑（唯一例外＝audit 重建索引，过拍板）。
 - **纪律全域化**（防平台写入绕过技能）：AGENTS.md 记忆套件地图约束一切记忆写入（含平台主动写入）。
-- **弹窗未应答分级兜底**（防静默处置）：形式性修复照推荐执行并标注，内容性处置一律挂起留账、orient 简报重提。
-- **不做 hook**（v6.8 决策）：hook 全局生效与「手动触发为主」「上下文是有限资源」相悖，`mcpServers`/`userConfig` 同理不引入；触发可靠性靠 when_to_use 措辞与 AGENTS.md 地图。
+- **弹窗未应答分级兜底**（防静默处置）：形式性修复照推荐执行并标注，内容性处置一律挂起留账、orient 简报重提；未获应答可同会话补拍一次再兜底。
+- **收料弹窗结构化**（防自由输入空转）：向用户收事实/拍板/修正优先给可点选候选（附来源指针），点选确认或改写，不依赖自由文本——真实环境实测自由输入通道易空转。
+- **不做 hook**（既定决策）：hook 全局生效与「手动触发为主」「上下文是有限资源」相悖，`mcpServers`/`userConfig` 同理不引入；触发可靠性靠 when_to_use 措辞与 AGENTS.md 地图。
 
 > 设计依据：对 Jesse Vincent、Anthropic 官方、github/spec-kit、BMAD-METHOD、Cline Memory Bank、Ralph loop、Manus、AI Hero 等业界实践的三路调研，并经多轮独立子代理评审修复（fresh eyes 评审法）。
 
