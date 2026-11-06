@@ -12,22 +12,40 @@ orient（校验侧）、checkpoint（写入侧）、memory-audit（对账侧）�
 | **平台记忆** | 两问测试通过的非显而易见事实 | 永久，定期体检 |
 | **会话上下文** | 过程、工具输出、半成品 | 即弃 |
 
-**票据终态约定**（repo 层，orient 对账、checkpoint 收尾、memory-audit 对账共用）：实现票收口＝验收勾选全勾＋Status 置终态——本地实现票 `Status: done`（容忍日期批注：值以 done 开头即视为终态，如 `done（2026-11-05 收口）`；写入时按 repo 登记的批注惯例，无登记写裸 `done`），wayfinder 决策票（含 task 型）`Status: resolved`（值以 resolved 开头即视为终态，同样容忍日期批注；走其 Resolve 全套，远端等价动作＝评论＋关闭），远端实现票按 `docs/agents/issue-tracker.md` 关闭。验收框判定：`- [x]`／`- [X]` 均算已勾，框内带批注按勾选计。Matt local 词表 wontfix 是放弃非完结，不算已有终态约定。repo 的 issue-tracker.md 有终态登记时以其为准；没有→按本约定执行并在报告注明口径（project-init 会弹窗建议登记，见其技能文本）。
+**票据终态约定**（repo 层，orient 对账、checkpoint 收尾、memory-audit 对账共用）：
+- 本地实现票：验收勾选全勾＋`Status: done`（值以 done 开头即视为终态，容忍日期批注如 `done（2026-11-05 收口）`；写入按 repo 登记的批注惯例，无登记写裸 `done`）
+- wayfinder 决策票（含 task 型）：`Status: resolved`（值以 resolved 开头即视为终态，同样容忍日期批注），走 Resolve 全套——本地＝`## Answer` 标题下追加答案＋置 resolved＋map.md 指针；远端＝答案评论＋关闭＋map 指针
+- 远端实现票：按 `docs/agents/issue-tracker.md` 关闭
+- 验收框判定：`- [x]`／`- [X]` 均算已勾，框内带批注按勾选计
+- Matt local 词表 wontfix 是放弃非完结，不算已有终态约定
+- repo 的 issue-tracker.md 有终态登记时以其为准；没有→按本约定执行并在报告注明口径（project-init 会弹窗建议登记，见其技能文本）
+
+**票据口径（票种识别）**（orient 对账、memory-audit 盘点共用）：
+- `.scratch/<目录>/` 内含 `map.md` → wayfinder 词表：open/claimed/resolved，无 Status 行＝open；`Type:` 行注明票种——research/prototype/grilling/task 四种（大小写不敏感，值带批注以前缀为准），task 型与决策票同口径收尾
+- map.md 是整组开关：组内混实现票时向用户报告，收口各归词表（实现票 done、决策/task 票 resolved，不混用）；map 本体上游无关闭动作，整组 resolved 即视为地图走完（简报注明即可）
+- 远端票 labels 含 `wayfinder:` 前缀 → 同按决策票口径（open↔未认领、claimed↔有 assignee、resolved↔closed，`wayfinder:map` 为地图入口）
+- `.scratch/<feature>/spec.md`（to-spec 产物：无验收框，可能带 Status）＝spec 文档：不进「能开工的票」，只作对账源（本地票据模板无 Parent 区，spec 父票判据只适用远端）
+- 其余按 `docs/agents/issue-tracker.md` 词表（本地＝Status 行＋验收勾选；远端＝state＋labels＋assignee）；该词表读不到、或其中没有终态约定 → 按内嵌最小词表判定，简报注明口径来源：
+  - 本地＝Status 行＋验收勾选，终态 done（值以 done 开头即终态，容忍日期批注；wontfix 细则见上）
+  - wayfinder 决策/task 票＝resolved（值以 resolved 开头即终态，容忍日期批注）
+  - `docs/agents/triage-labels.md` 也读不到 → ready-for-agent 按字面匹配；无任何状态词表时，非终态（值不以 done/resolved 开头）且未认领（Status 值不以 claimed 开头）的本地票列为候选
 
 **记忆健康台账**（`.scratch/memory-health.md`，repo 层）：预警器的唯一计数器，机器可查。
 - 一行一事：`日期｜类型｜内容`。类型四种：
   - `病`：orient 转介/落后/孤岛候选；含 `病：平台写入异常`（checkpoint 回读不符时记）
   - `收口`：checkpoint **每轮**追加一行——有票记票数（如 `3 张票收口`），无票记「轮 N」；初始化类行不属收口（project-init 建档不计数）（文件不存在→先创建再追加）
   - `清账`：memory-audit 处置完追加的分界线
-  - `挂账`：弹窗未获应答的内容性处置，逐条一行——orient 简报重提，拍板执行后由执行方追加清账行划账
-- 计数规则：orient 数「同一病名×同一对象自上次清账起出现次数」≥2→简报升级告警；距上次清账行的收口行满 2-3（票或轮）→建议跑 /memory-audit。**计数器只做提醒**：到值只在简报里建议，不代跑、不代执行任何处置——跑不跑体检、怎么处置，由用户拍板。
+  - `挂账`：弹窗未获应答的内容性处置，逐条一行——orient 简报重提，拍板执行后由执行方追加清账行划账；已拍板但对象不在本技能写盘范围（如跨库转介）同样落挂账行，由对象侧处置后划账
+- 计数规则：orient 数「同一病名×同一对象自上次清账起出现次数」≥2→简报升级告警；距上次清账行的收口行满 2-3（票或轮）→建议跑 /memory-audit。**「格式示例：」开头的行是建档时的文档示例，不是数据行——一切计数不数它**。**计数器只做提醒**：到值只在简报里建议，不代跑、不代执行任何处置——跑不跑体检、怎么处置，由用户拍板。
 - 落点例外：无关联 repo 的会话落当前工作目录 `.scratch/`，并在简报注明落点。
 - 孤岛裁决不记本台账，归全局台账 island-checks.md（四态与迁移规则见「记忆孤岛」节）。
 
 **记忆孤岛**：同项目换工作区（搬目录/改名/换打开方式）会另起一套记忆目录。
 - 位置：系统提示 memory 说明所指的根下（Bash 查 `~/.zcode/cli/memories/projects/`；用 Read 读候选文件时展开为 Windows 绝对路径）。
 - 分工：orient 负责发现；/memory-audit 负责合并（带防护：合并前复述两库代表记忆供用户指认＋本库留溯源行＋不可逆处置推荐项默认保守）。
-- 裁决落点：记忆根全局台账 `island-checks.md`（与各项目 memory 目录平级）——裁决五态＝确认/排除/待合并/已合并/无法排查（目录名不可判读等，条件变化后可重查），一行一事 `日期｜目录名｜结论`。orient/audit 扫描先查它，已有结论的目录不再重复弹窗（跨窗口防重复的唯一稳定落点：孤岛诞生于换工作区，裁决不能留在会随窗口漂移的 repo 台账里）。历史孤岛裁决行留在旧台账不必迁移，以 island-checks.md 为准。文件不存在时 orient／audit 直接新建。
+- 裁决落点：记忆根全局台账 `island-checks.md`（与各项目 memory 目录平级），一行一事 `日期｜目录名｜结论`；文件不存在时 orient／audit 直接新建。
+- 裁决五态＝确认/排除/待合并/已合并/无法排查（目录名不可判读等，条件变化后可重查）。
+- orient/audit 扫描先查它，已有结论的目录不再重复弹窗——跨窗口防重复的唯一稳定落点（孤岛诞生于换工作区，裁决不能留在会随窗口漂移的 repo 台账里）；历史孤岛裁决行留在旧台账不必迁移，以 island-checks.md 为准。
 - 优先级：全局台账已有裁决的候选跳过发现问，但合并防护①仍必走（合并前安全步骤）。
 - 多窗口：同项目可能绑定不同记忆目录——以项目语境指认的库为准，用 island-checks 与台账交叉印证。
 
