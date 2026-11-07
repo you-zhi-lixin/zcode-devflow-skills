@@ -1,4 +1,4 @@
-# Matt 技能本地补丁清单（v6.5，2026-11-05；#16-17 追加 2026-11-06）
+# Matt 技能本地补丁清单（v6.5，2026-11-05；#16-17 追加 2026-11-06；#18 追加 2026-11-07）
 
 本套件与 Matt Pocock 技能集配合使用。以下补丁打在本机 Matt 技能文件上（~/.zcode/skills/ 下的符号链接 → ~/.agents/skills/），**上游 `npx skills add mattpocock/skills` 更新时会冲掉**——更新后按本清单逐条重打。表中「文件」列路径均相对 `~/.agents/skills/`；issue-tracker-*.md 位于 setup-matt-pocock-skills/ 目录内。每条补丁均出自三方咬合评审（全生命周期/初始化矩阵/产物归属），且经用户拍板授权。
 
@@ -21,3 +21,4 @@
 | 15 | code-review/SKILL.md | 聚合后加「问用户是否把发现落 PR/票评论或 docs」 | standalone 评审发现只存在于对话 |
 | 16 | ask-matt/SKILL.md | Standalone 节末尾加「记忆套件」条目：/orient 开工定位、/checkpoint 收口沉淀、/memory-audit 记忆体检、/project-init 项目初始化（zcode-devflow-skills 插件；用户问「接下来干嘛/要不要收口/记忆要不要紧」时指向它们） | ask-matt 路由表不含记忆套件，记忆节奏的兜底入口断头 |
 | 17 | setup-matt-pocock-skills/issue-tracker-local.md | Conventions 加「本地实现票收口＝验收全勾＋Status: done（可带日期批注，如 done（2026-11-05 收口））；wayfinder 决策票（含 task 型）Status: resolved（见 Wayfinding operations 节）」 | 本地实现票无终态定义（上游 implement 对本地票零收口规定，done 只是项目习惯无出处），新 setup 的仓库天生缺词表 |
+| 18 | setup-matt-pocock-skills/SKILL.md | 块保留条款扩为「Preserve any sub-blocks you don't recognize …, as well as any other lines inside the `## Agent skills` block」 | setup 重跑冲掉 project-init 铺的「拍板顺序／入口指针」同级散行→入口指针失效（推翻问句 repo 文档侧断链） |
