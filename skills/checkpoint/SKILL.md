@@ -20,7 +20,7 @@ disable-model-invocation: true
    - 票面 ready-for-human 而交付实际已由本会话完成：不直接回写——弹窗说明矛盾（票面要人工、实作已完成），由用户拍板：勾框置 done／退回重 triage／搁置
    - 远端实现票：先勾正文验收框（命令按 tracker 文档）再关闭
    - wayfinder 决策票（含 task 型）：走 Resolve 全套（动作清单在合同「票据终态约定」；远端另按 tracker 文档 Resolve 节）
-   **台账（每轮）**：`.scratch/memory-health.md` 不存在→先创建（格式见合同）再追加一行收口记录（行如 `2026-11-06｜收口｜3 张票收口`）——有票记票数，无票记「轮 N」；commit message 未引用票号→提醒用户（不代改）。
+   **台账（每轮）**：`.scratch/memory-health.md` 不存在→先创建（格式见合同）再追加一行收口记录（行如 `2026-11-06｜收口｜3 张票收口`）——有票记票数，无票记「轮 N」（N＝最近一行`清账`行后已有收口行数＋1，清账重置；无清账行自建账起数，口径同合同）；commit message 未引用票号→提醒用户（不代改）。
    **repo 外/不可达分支产物**：编排过子代理→向用户确认探索笔记等产物的去向（repo 外目录，或 prototype 的分支本体——分支不进主干，机器丢失即死；wayfinder research 笔记上游已复制到默认分支 `docs/research/`，核对票上指针即可）：票上已有指针的不再重复问指针，改问**内容本体要不要落 repo 交付存档**（判定性结论至少落一份）；本会话运行过 /handoff→核对便签路径已由 handoff 技能留到票 Comments，缺失才问。
 
 2. **过两问测试＋写入四问**（合同）：进度细节（票 done、测试数、commit 号）留 repo；半成品→提醒用户跑 /handoff，记忆侧不写；**ADR 级拍板**（难逆转＋真权衡）→先问用户要不要建 ADR（调用 domain-modeling），拒了再进记忆；纠正若已进 CODING_STANDARDS.md/自动检查→repo 已记录，记忆留指针；值得写的归四种类型标落点；流水账进 repo 交付存档文件，记忆留指针；猜测标「假设：」。

@@ -4,7 +4,7 @@
     {
       "name": "zcode-devflow-skills",
       "source": ".",
-      "version": "6.8.1",
+      "version": "6.8.2",
       "description": "Matt Pocock pipeline companion: memory and reconciliation layer",
       "displayName": "ZCode DevFlow Skills",
       "displayName_i18n": { "zh-CN": "ZCode DevFlow 技能套件" },
