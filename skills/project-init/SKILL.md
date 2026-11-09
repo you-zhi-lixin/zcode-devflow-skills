@@ -14,7 +14,7 @@ disable-model-invocation: true
 
 ## 过程
 
-1. **前置检查**（只读）：新项目还是存量——repo 已有实质代码、票据或 git 史（任一即可）且 AGENTS.md/CLAUDE.md 无「记忆套件」子块＝存量；git 仓库有无；`docs/agents/issue-tracker.md` 有无（Matt setup 产出物）；AGENTS.md/CLAUDE.md 有无；记忆库空否（MEMORY.md 顶部有「> ⚠ 冻结：」指针→告知用户本项目记忆已移交（路径见指针），跳过第 2 步子块更新与 seed，完成判据按「已说明跳过」计）；台账 `.scratch/memory-health.md` 有无（有→读「拒绝记忆」类病行，后续询问据此跳过）。
+1. **前置检查**（只读）：新项目还是存量——repo 已有实质代码、票据或 git 史（任一即可）且 AGENTS.md/CLAUDE.md 无「记忆套件」子块＝存量；git 仓库有无；`docs/agents/issue-tracker.md` 有无（Matt setup 产出物）；AGENTS.md/CLAUDE.md 有无；记忆库空否（MEMORY.md 顶部有「> ⚠ 冻结：」指针→告知用户本项目记忆已移交（路径见指针），跳过第 2 步子块更新与 seed，完成判据按「已说明跳过」计；**库空且无冻结指针→顺带一句告知（不弹窗不阻塞，用户不接话照常继续）：想搬旧项目的记忆过来，直接说「体检记忆」即可由 /memory-audit 按合并流程办**）；台账 `.scratch/memory-health.md` 有无（有→读「拒绝记忆」类病行，后续询问据此跳过）。
    tracker 缺失→**新项目**：告知用户先跑 /setup-matt-pocock-skills（手动技能，本技能禁止代为调用），**完成后重新输入 /project-init 继续**（重跑安全，已铺部分自动跳过）；用户不跑→向用户说明后果：工程技能会阻塞要求配置，记忆套件照常可用（票走 `.scratch/` 或无票），说明后**不停下，照常走第 2-4 步**。**存量项目**：仅告知上述后果，不阻塞不停下（后续照常走第 2、4 步）。tracker：记录任务清单的载体。
    存量项目→走第 2、4 步（只铺地图＋告知日常节奏，跳过 tracker 分岔与 seed）。
 

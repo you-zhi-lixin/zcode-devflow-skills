@@ -27,6 +27,7 @@ when_to_use: 用户要在既有项目上开工时——新会话续接、隔天�
    - 候选弹窗（多候选可合并一窗）**附命中关键词列表**（词×命中处数，不展示对方内容）；用户确认后才 Read 对方 MEMORY.md 摘要。
    - 确认／排除结论落 island-checks.md（`日期｜目录｜结论`），不落 repo 台账。
    - 目录名不可判读的库（draft-*／纯数字）结论记 island-checks.md「无法排查」态（`日期｜目录｜无法排查（原因）`），禁止报「无孤岛」——假阴性会使用户跳过本该做的排查；已记的不再重复弹窗，条件变化（改名／新增可判读线索）后重查。
+   - **零候选也留痕**：初筛全记忆根零命中→在 island-checks.md 落一行 `日期｜无候选｜关键词：<本次初筛关键词列表>`（不弹窗）——「扫过」的证据行，日后排查「记忆没搬回」据此还原当时口径。
    **空库先判新旧**：repo 已有记忆套件地图或成套票据，或 git 史 ≥5 笔提交，且 MEMORY.md 与 memory 目录皆空＝疑似 veteran 空库（换机／重装／误删 vs 首装空库，库内无法自辨）→先 `ls ~/.zcode/cli/memories/projects/` 排查同机旧库（规定动作，不可跳），再按 [references/empty-library.md](references/empty-library.md) 的岔路走——问用户→拷回／放弃／起步三出口，**放弃前二次确认与损失告知不可省**。真新项目（repo 也新）→直接走第 6 步。
 
 3. **对账**：将记忆与仓库现状对照——票据状态（含票面 Comments：agent-brief、handoff 便签路径一并取用）、spec／计划文档（含远端 spec 票正文）、`docs/research/` 笔记（存在则读；wayfinder research 落默认分支的产物）、CODING_STANDARDS.md 与交付存档（docs/archive.md 等记忆指针指向物，存在则纳入）、`git log --oneline -15`；repo 有 GLOSSARY.md、docs/adr/、`.out-of-scope/` 存在则一并纳入，GLOSSARY-MAP.md 存在＝multi-context 仓库（各 context 的 GLOSSARY 与 `src/<context>/docs/adr/` 一并纳入）。tracker 文档的 request-surface 旗标开启时（GitHub 模板＝「PRs as a request surface」、GitLab 模板＝「MRs as a request surface」，按字面匹配其一），ready-for-agent 的外部 PR／MR 一并列入「现在能开工的票」呈现（处置归 /triage）。
