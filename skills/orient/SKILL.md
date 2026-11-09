@@ -1,6 +1,6 @@
 ---
 name: orient
-description: 开工定位：读记忆→对照票据与 git 对账→输出简报并体检记忆小病，病多或疑似孤岛时转介 /memory-audit。
+description: 开工定位：读记忆→对照票据与 git 对账→输出简报并体检记忆小病，病多或疑似孤岛时转介 /memory-audit。用于既有项目开工——新会话续接、隔天再战、换窗口、开场直接派活、开场问「我们到哪了／接着干」；全新项目和一次性问答不用。
 license: MIT
 when_to_use: 用户要在既有项目上开工时——新会话续接、隔天再战、换窗口、开场直接派活，或开场问「我们到哪了／接着干」；全新项目和一次性问答不用。
 ---
@@ -30,7 +30,7 @@ when_to_use: 用户要在既有项目上开工时——新会话续接、隔天�
    **空库先判新旧**：repo 已有记忆套件地图或成套票据，或 git 史 ≥5 笔提交，且 MEMORY.md 与 memory 目录皆空＝疑似 veteran 空库（换机／重装／误删 vs 首装空库，库内无法自辨）→先 `ls ~/.zcode/cli/memories/projects/` 排查同机旧库（规定动作，不可跳），再按 [references/empty-library.md](references/empty-library.md) 的岔路走——问用户→拷回／放弃／起步三出口，**放弃前二次确认与损失告知不可省**。真新项目（repo 也新）→直接走第 6 步。
 
 3. **对账**：将记忆与仓库现状对照——票据状态（含票面 Comments：agent-brief、handoff 便签路径一并取用）、spec／计划文档（含远端 spec 票正文）、`docs/research/` 笔记（存在则读；wayfinder research 落默认分支的产物）、CODING_STANDARDS.md 与交付存档（docs/archive.md 等记忆指针指向物，存在则纳入）、`git log --oneline -15`；repo 有 GLOSSARY.md、docs/adr/、`.out-of-scope/` 存在则一并纳入，GLOSSARY-MAP.md 存在＝multi-context 仓库（各 context 的 GLOSSARY 与 `src/<context>/docs/adr/` 一并纳入）。tracker 文档的 request-surface 旗标开启时（GitHub 模板＝「PRs as a request surface」、GitLab 模板＝「MRs as a request surface」，按字面匹配其一），ready-for-agent 的外部 PR／MR 一并列入「现在能开工的票」呈现（处置归 /triage）。
-   先按合同「票据口径（票种识别）」节识别票种——wayfinder map 组／远端 `wayfinder:` 票／spec 文档／tracker 词表票／最小词表兜底五分支，细则（`Type:` 与 Status 的批注容忍、混组收口各归词表、map 完结声明）全在合同。票面与记忆一致、但与 git/工作树矛盾，也算对账发现。
+   先按合同「票据口径（票种识别）」节识别票种——wayfinder map 组／远端 `wayfinder:` 票／spec 文档／tracker 词表票／最小词表兜底五分支，细则（`Type:` 与 Status 的批注容忍、混组收口各归词表、map 完结声明）全在合同。票面与记忆一致、但与 git／工作树矛盾，也算对账发现。
 
 4. **轻体检**：按合同「体检红线」扫行级小病：
    - 索引行超 150 字符（按字符数）；断言缺日期锚
@@ -40,7 +40,7 @@ when_to_use: 用户要在既有项目上开工时——新会话续接、隔天�
 
    空库报「记忆库不存在」，不报「0 病」。出口：≤3 条→列清单走第 7 步；>3 条而无升级项→仍列清单走第 7 步（分批弹窗）；现状条目超 10KB、混入进度细节／✅、内部矛盾、孤岛待合并、索引条目 ≥30（预警，瘦身是重写级手术非当场小修）→只报告不动手，转介 /memory-audit。转介项与「记忆落后」横幅触发各追加台账一行`病`（`日期｜病｜对象＋一句话`；✅／进度细节按处计数）——升级告警的计数输入；孤岛候选不落本台账（归 island-checks.md）；小修当场执行项**也落一行轻量病行注明「已当场清」**（病名沿用体检红线原词以便跨会话匹配；只作升级告警计数输入，不影响收口行计数；未应答标注只在报告），挂起项走挂账行。
 
-5. **输出 standup 简报**（五段标题固定；聊天输出一律用普通 Markdown 排版——加粗小标题＋普通列表；**禁止套代码块／围栏**——围栏会把输出渲染成等宽代码块，用户看到的是源文本而非排版效果；行内反引号与单行可复制命令不受限）：
+5. **输出 standup 简报**（五段标题固定；聊天输出排版遵循合同「聊天输出排版」节）：
    - **当前阶段**：一两句，带日期锚与证据；来自记忆未经核验的口径标注「（来自记忆，本轮还没核对）」
    - **现在能开工的票**：
      - 决策票可开工＝open＋无 blocker＋无人认领；建议下一步给 `/wayfinder`（**票号 标题**——Question 摘要一句）。
@@ -51,7 +51,7 @@ when_to_use: 用户要在既有项目上开工时——新会话续接、隔天�
        - 验收框未全勾（**全勾＋非终态＝票内漂移**）
        - **非 spec 父票**：无验收框且被其他票以 Parent/sub-issue 引用＝spec 父票→列「待拆票」，建议 /to-tickets
      - 漂移（git 迹象或票内矛盾）不进队列，列入对账发现，经用户拍板后按 tracker 词表补置终态。
-     - needs-info／needs-triage／ready-for-human／wontfix 不可开工，另列原因（优先引票面原文）；五档与终态之外的自创状态（如 code-complete、in-observation）同样不进队列、另列并注明词表外。ready-for-human 票有已交付迹象（git/简报证据）→列入对账发现经拍板处置，选项同 checkpoint 收尾（置 done／退回重 triage／搁置）。
+     - needs-info／needs-triage／ready-for-human／wontfix 不可开工，另列原因（优先引票面原文）；五档与终态之外的自创状态（如 code-complete、in-observation）同样不进队列、另列并注明词表外。ready-for-human 票有已交付迹象（git／简报证据）→列入对账发现经拍板处置，选项同 checkpoint 收尾（置 done／退回重 triage／搁置）。
      - 实现票每张一行：**票号 标题**——验收要点一句（不用竖线伪表格，普通加粗列表即可读）。
    - **等你拍板的事**：🟡 记忆挂账（台账`挂账`行逐条重提，已划账或注明「已移交」的不再提；重提时核对 repo 侧对象已处置→当场形式性划账；同一挂账重提 ≥2 次无进展→按合同止损请用户明示）＋票正文开放问题，重复的合并
    - **建议下一步**：具体到命令——决策票 `/wayfinder`；实现票 `/implement .scratch/<功能>/issues/NN-<slug>.md`（远端票写 `/implement <票号或URL>（票标题）`，如 `/implement 3（上游演示资产清除与占位壳）`——号码进命令保精确、标题进括注供新窗口核对认票；标题照抄票面原样不转写，括注是建议时点快照：认票以票号为准，票面改题不构成对账发现）；无票项目给基于挂账或最近 commit 的动作；不确定走哪条→问 ask-matt
