@@ -1,25 +1,26 @@
 # AGENTS.md — zcode-devflow-skills
 
-ZCode 插件（devflow-market）：衔接 Matt Pocock 技能管线（grilling → to-spec → to-tickets → implement）的**记忆与对账层**。纯内容仓库——没有构建／测试／lint 工具链，git 是唯一工具，改动即生效。
+ZCode 插件（devflow-market）：Matt Pocock 技能管线（grilling → to-spec → to-tickets → implement）的**记忆与对账层**，v7.0 起管线本体 20 技能已收编进本仓库（出处见 `docs/matt-vendored.md`）。纯内容仓库——没有构建／测试／lint 工具链，git 是唯一工具，改动即生效。
 
 ## 目录地图
 
 | 路径 | 是什么 |
 |---|---|
-| `skills/{orient,checkpoint,memory-audit,project-init}/SKILL.md` | 四个技能，正文全部简体中文 |
+| `skills/{orient,checkpoint,memory-audit,project-init}/SKILL.md` | 四个自撰技能，正文全部简体中文 |
+| `skills/`（其余 20 目录） | v7.0 收编的 Matt 技能（清单与全部改动：`docs/matt-vendored.md`），保留英文原文与上游 frontmatter |
 | `skills/checkpoint/references/memory-discipline.md` | **单一真相源**：共享纪律合同（两问测试／写入四问／重写律／四层地盘／票据终态与票种口径／体检红线／记忆健康台账／拍板弹窗兜底） |
 | `skills/*/references/*.md` | 技能附属分支细则（如 `orient/references/empty-library.md`）——随所属技能一起改，不跨技能引用 |
 | `docs/matt-interlock.md` | Matt 咬合规则全文（AGENTS.md 正文只留指针）——动技能文本前必读 |
-| `commands/*.md` | 四条薄壳 /命令（orient、checkpoint、memory-audit、project-init）：frontmatter（description／argument-hint／skills）＋一行挂载技能＋`$ARGUMENTS` |
+| `commands/*.md` | 16 条薄壳 /命令（自撰 4：orient、checkpoint、memory-audit、project-init；收编 12：ask-matt、grill-with-docs、triage、improve-codebase-architecture、setup-matt-pocock-skills、to-spec、to-tickets、implement、implement-spec、wayfinder、retro、handoff）：frontmatter（description／argument-hint／skills）＋一行挂载技能＋`$ARGUMENTS`；model-invoked 收编技能不出命令（自动可达） |
 | `.zcode-plugin/plugin.json`、`marketplace.json` | 插件与市场清单；**版本号两处必须同步改** |
 | `.scratch/memory-health.md` | 记忆健康台账：只追加、不改历史行（一行一事：`日期｜类型｜内容`） |
-| `MATT-PATCHES.md` | 打在本机 Matt 技能（`~/.agents/skills/`）上的补丁台账；上游 `npx skills add mattpocock/skills` 更新会冲掉，按单重打 |
+| `docs/matt-vendored.md` | 收编出处与改动清单：上游出处、MIT 许可证全文、收编范围（20 收 7 不收）、烤入补丁 #1-18 与收编改动 #19-25、上游同步与老用户迁移 |
 
 ## 硬边界与编辑规则
 
 - **纪律合同是唯一真相源**：两问测试、写入四问、重写律只写在 `memory-discipline.md`，SKILL.md 不重复；其余三个技能经相对路径 `../checkpoint/references/memory-discipline.md` 引用——移动／改名 `skills/checkpoint/` 须同步这三处引用。
 - 技能内的相对路径引用以**技能文件所在目录**为基准展开，勿按项目 cwd 解析（commands 薄壳挂载不改变该基准）。
-- **新增技能** = `skills/<name>/SKILL.md`（frontmatter：name／description／license／when_to_use）＋ `commands/<name>.md` 薄壳。除 `orient`（唯一自动触发的技能）外，一律 `disable-model-invocation: true`，仅用户明示调用。
+- **新增技能** = `skills/<name>/SKILL.md`（frontmatter：name／description／license／when_to_use）＋ `commands/<name>.md` 薄壳。除 `orient`（唯一自动触发的自撰技能）外，一律 `disable-model-invocation: true`，仅用户明示调用。**收编件例外**：frontmatter 与文本保上游原样，偏离须登记 `docs/matt-vendored.md`（咬合规则第 3 条）。
 - **argument-hint 只在 `commands/*.md` 生效**，写在 SKILL.md 里是死键（checkpoint 踩过，见 git 历史）。
 - 提交信息用中文 conventional 风格（`feat:`/`fix:`/`polish:`），需用户裁决的改动注明「用户拍板」。
 
@@ -32,7 +33,7 @@ ZCode 插件（devflow-market）：衔接 Matt Pocock 技能管线（grilling �
 
 ## Matt 咬合规则（动技能文本前必读）
 
-本插件永远与 Matt Pocock 技能集（本机 `~/.agents/skills/`，`~/.zcode/skills/` 为其符号链接）搭配使用。凡评审、修订、新增涉及四个技能与 Matt 技能的接壤面，**先读 [docs/matt-interlock.md](docs/matt-interlock.md)**——四条铁律：先读透再断言／双向咬合检查／补丁在位核对／副本联动。
+Matt 技能集 20 技能子集已收编进本仓库（v7.0）。凡评审、修订、新增涉及自撰技能与收编技能的接壤面，**先读 [docs/matt-interlock.md](docs/matt-interlock.md)**——五条铁律：先读透再断言／双向咬合检查／出处单核对／副本联动／收编边界纪律（未收编 7 技能不冒充、本机旧副本勿复活）。
 
 ## 动敏感区前先读
 
