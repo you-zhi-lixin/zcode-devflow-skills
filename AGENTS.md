@@ -8,7 +8,7 @@ ZCode 插件（devflow-market）：Matt Pocock 技能管线（grilling → to-sp
 |---|---|
 | `skills/{orient,checkpoint,memory-audit,project-init}/SKILL.md` | 四个自撰技能，正文全部简体中文 |
 | `skills/`（其余 27 目录） | v7.0 收编的 Matt 技能全套（清单与全部改动：`docs/matt-vendored.md`），保留英文原文与上游 frontmatter |
-| `skills/checkpoint/references/memory-discipline.md` | **单一真相源**：共享纪律合同（两问测试／写入四问／重写律／四层地盘／票据终态与票种口径／体检红线／记忆健康台账／拍板弹窗兜底） |
+| `skills/checkpoint/references/memory-discipline.md` | **单一真相源**：共享纪律合同（两问测试／写入四问／重写律／四层地盘／票据终态与票种口径／体检红线／记忆健康台账／拍板弹窗兜底／聊天输出排版含「接下来可以做」规范） |
 | `skills/*/references/*.md` | 技能附属分支细则（如 `orient/references/empty-library.md`）——随所属技能一起改，不跨技能引用 |
 | `docs/matt-interlock.md` | Matt 咬合规则全文（AGENTS.md 正文只留指针）——动技能文本前必读 |
 | `commands/*.md` | 20 条薄壳 /命令（自撰 4：orient、checkpoint、memory-audit、project-init；收编 16：ask-matt、grill-with-docs、triage、improve-codebase-architecture、setup-matt-pocock-skills、to-spec、to-tickets、implement、implement-spec、wayfinder、retro、handoff、grill-me、wait-what、teach、to-questionnaire）：frontmatter（description／argument-hint／skills）＋一行挂载技能＋`$ARGUMENTS`；model-invoked 收编技能不出命令（自动可达：diagnosing-bugs、pr、wizard） |
