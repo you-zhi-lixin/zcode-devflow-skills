@@ -1,6 +1,6 @@
 # Matt 技能收编出处与改动清单（v7.0，2026-11-11）
 
-本插件自 v7.0 起，将 Matt Pocock 技能集的子集**收编进仓库**（`skills/` 下 20 个目录随插件分发），不再要求用户本机安装 `~/.agents/skills/`。收编意味着：**上游更新不再自动到达**，同步上游改为手动可选动作（见文末）；下列改动直接落在收编件上，不存在「补丁被上游更新冲掉」的问题。
+本插件自 v7.0 起，将 Matt Pocock 技能集**全部 27 个技能收编进仓库**（`skills/` 下随插件分发），不再要求用户本机安装 `~/.agents/skills/`。收编意味着：**上游更新不再自动到达**，同步上游改为手动可选动作（见文末）；下列改动直接落在收编件上，不存在「补丁被上游更新冲掉」的问题。
 
 ## 出处与许可证
 
@@ -32,15 +32,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## 收编范围（20）
+## 收编范围（27，全收集）
 
-**硬依赖闭合 17**（收编件运行时以 Skill tool 互相调用，缺一即断链）：
-ask-matt、implement、to-spec、to-tickets、handoff、retro、wayfinder、triage、setup-matt-pocock-skills、tdd、code-review、writing-for-agents、grilling、domain-modeling、research、prototype、codebase-design
+**决策轨迹**：2026-11-11 初版方案收 20（17 硬依赖闭合＋3 咬合可选），其余 7 个以「model-invoked 自动介入用户项目超出咬合面」为由不收；**同日用户翻案拍板全收**——插件定位是给用户完整的 Matt 技能集体验，独立使用的工具不必与记忆层咬合，AI 自动用上它们正是提升准确与效率的题中之义。据此 7 个补收，ask-matt 剪枝（初版 #19-#23）全部撤销恢复上游原文。
 
-**咬合可选 3**：
-grill-with-docs（ask-matt 主流程第一入口）、implement-spec（改动 #14 覆盖）、improve-codebase-architecture（用户手动触发；其依赖 grilling/domain-modeling/codebase-design 均在闭合内）
+- **硬依赖闭合 17**（收编件运行时以 Skill tool 互相调用，缺一即断链）：ask-matt、implement、to-spec、to-tickets、handoff、retro、wayfinder、triage、setup-matt-pocock-skills、tdd、code-review、writing-for-agents、grilling、domain-modeling、research、prototype、codebase-design
+- **管线咬合可选 3**：grill-with-docs（ask-matt 主流程第一入口）、implement-spec（改动 #14 覆盖）、improve-codebase-architecture（依赖全在闭合内）
+- **独立工具 7**（不参与管线咬合，单独使用）：grill-me（无仓库拷问）、diagnosing-bugs（疑难排查，model-invoked）、pr（PR 正文模板，model-invoked）、wizard（人肉步骤向导，model-invoked）、wait-what（没听懂重讲）、teach（跨会话教学）、to-questionnaire（异步问卷）
 
-**未收编 7**：grill-me、diagnosing-bugs、pr、wizard、wait-what、teach、to-questionnaire——经引用追踪核实：仅被 ask-matt 路由提及，无任何运行时调用者；且其中 pr／wizard／diagnosing-bugs 为 model-invoked（收编后会自动介入用户项目，如自动接管 PR 正文风格），超出本插件咬合面。ask-matt 路由表中对应条目已剪（#19-#23）。
+**model-invoked 说明**（diagnosing-bugs／pr／wizard 三件无 `disable-model-invocation` 键）：AI 在用户项目中匹配到场景会**自动**启用（自动接管 PR 正文风格、自动进排查纪律、自动出人肉步骤向导）。此为全收拍板的知情后果，非缺陷。
 
 ## 对上游的改动清单
 
@@ -67,22 +67,18 @@ grill-with-docs（ask-matt 主流程第一入口）、implement-spec（改动 #1
 | 17 | setup-matt-pocock-skills/issue-tracker-local.md | Conventions 加「本地实现票收口＝验收全勾＋Status: done（可带日期批注，如 done（2026-11-05 收口））；wayfinder 决策票（含 task 型）Status: resolved（见 Wayfinding operations 节）」 | 本地实现票无终态定义（上游 implement 对本地票零收口规定，done 只是项目习惯无出处），新 setup 的仓库天生缺词表 |
 | 18 | setup-matt-pocock-skills/SKILL.md | 块保留条款扩为「Preserve any sub-blocks you don't recognize …, as well as any other lines inside the `## Agent skills` block」 | setup 重跑冲掉 project-init 铺的「拍板顺序／入口指针」同级散行→入口指针失效（推翻问句 repo 文档侧断链） |
 
-### v7.0 收编新增改动（#19-#25）
+### v7.0 收编改动
 
 | # | 文件 | 改动 | 为什么 |
 |---|---|---|---|
-| 19 | ask-matt/SKILL.md | 主流程步骤 1 括注改为「stateless no-repo 变体 /grill-me 未随本插件收编」 | grill-me 未收编，路由提及成死链 |
-| 20 | ask-matt/SKILL.md | On-ramps「Something's broken」条目去掉 /diagnosing-bugs 指向，改为「直接排查，修完跑 /retro；缺好接缝找 /improve-codebase-architecture」 | diagnosing-bugs 未收编；保留条目尾部仍有效的指向 |
-| 21 | ask-matt/SKILL.md | 删主流程步骤 3 的 /pr 整段 | pr 未收编（model-invoked，收编即自动接管用户 PR 风格） |
-| 22 | ask-matt/SKILL.md | Standalone 删 /grill-me、/to-questionnaire、/wizard、/wait-what、/teach 五条目 | 未收编 |
-| 23 | ask-matt/SKILL.md | grilling 条目「`/grill-me` and `/grill-with-docs` are the two named ways in」改「`/grill-with-docs` is the named way in」 | 同 #19 |
-| 24 | commands/（新增 12 个薄壳） | ask-matt、grill-with-docs、triage、improve-codebase-architecture、setup-matt-pocock-skills、to-spec、to-tickets、implement、implement-spec、wayfinder、retro、handoff——用户触发型收编技能的 /命令入口；中文 description 为本插件自撰，正文挂载上游技能 | 收编技能需用户可触发的命令入口；model-invoked 收编件不出命令（自动可达） |
-| 25 | 收编件 frontmatter | 保留上游原样（name/description/disable-model-invocation），不补 license/when_to_use | 收编保真优先；AGENTS.md 的 frontmatter 约定只约束自撰技能 |
+| 19 | ~~ask-matt/SKILL.md 剪枝 5 处~~ | **已撤销**（2026-11-11 用户拍板全收）：ask-matt 恢复上游原文（含 #16），初版 20 收方案中为未收编 7 技能剪的 7 处路由提及全部还原 | 全收后无死链可剪 |
+| 20 | commands/（新增 16 个薄壳） | ask-matt、grill-with-docs、triage、improve-codebase-architecture、setup-matt-pocock-skills、to-spec、to-tickets、implement、implement-spec、wayfinder、retro、handoff、grill-me、wait-what、teach、to-questionnaire——用户触发型收编技能的 /命令入口；中文 description 为本插件自撰，正文挂载上游技能 | 收编技能需用户可触发的命令入口；model-invoked 收编件不出命令（自动可达） |
+| 21 | 收编件 frontmatter | 保留上游原样（name/description/disable-model-invocation），不补 license/when_to_use | 收编保真优先；AGENTS.md 的 frontmatter 约定只约束自撰技能 |
 
 ## 上游同步（手动，可选）
 
-上游出了好修复想跟：到 https://github.com/mattpocock/skills 对比对应文件与收编件，手工搬差异；搬完对照本清单过一遍 #19-#23 剪枝区是否仍成立。**不同步完全不影响运行。切勿再跑 `npx skills add mattpocock/skills`**——它会把本机旧副本装回来，遮蔽插件版（与「手动 cp 遮蔽插件版」同一道理）。
+上游出了好修复想跟：到 https://github.com/mattpocock/skills 对比对应文件与收编件，手工搬差异；搬完 grep 抽查本表 #1-#18 是否仍成立。**不同步完全不影响运行。切勿再跑 `npx skills add mattpocock/skills`**——它会把本机旧副本装回来，遮蔽插件版（与「手动 cp 遮蔽插件版」同一道理）。
 
 ## 老用户迁移（装过 Matt 技能集的机器）
 
-装 v7.0 插件后，删除本机 `~/.agents/skills/`（及 `~/.zcode/skills/` 符号链接内）**恰好这 20 个已收编目录**：ask-matt、implement、to-spec、to-tickets、handoff、retro、wayfinder、triage、setup-matt-pocock-skills、tdd、code-review、writing-for-agents、grilling、domain-modeling、research、prototype、codebase-design、grill-with-docs、implement-spec、improve-codebase-architecture。**未收编的 7 个（grill-me、diagnosing-bugs、pr、wizard、wait-what、teach、to-questionnaire）保留在本地**，继续可用；其余无关目录（oil-ui、钉钉系等）不动。删 20 留 7 的道理：已收编的留在本地会遮蔽插件版（改插件不生效）；未收编的本地留着正好补位。
+装 v7.0 插件后，删除本机 `~/.agents/skills/`（及 `~/.zcode/skills/` 符号链接内）**Matt 技能集的全部 27 个目录**（清单即上节「收编范围」）。其余无关目录（oil-ui、钉钉系等）不动。道理：收编件与本地副本逐字节一致，删本地零损失；不删则本地副本永久遮蔽插件版，以后改插件不生效。装完跑一句 `/ask-matt` 冒烟核对即可。

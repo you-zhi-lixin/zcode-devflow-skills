@@ -1,11 +1,11 @@
 # ZCode DevFlow Skills
 
-一套衔接 [Matt Pocock 技能集](https://github.com/mattpocock/skills)（grilling → to-spec → to-tickets → implement）与 ZCode 平台记忆系统的开发流程技能。自 v7.0 起 Matt 工程管线 20 个技能**已收编进插件**（出处、改动与许可证见 [`docs/matt-vendored.md`](docs/matt-vendored.md)），装一个插件全套到位。四个自撰技能对应四个不同节奏，覆盖项目全生命周期，彼此零重叠。
+一套衔接 [Matt Pocock 技能集](https://github.com/mattpocock/skills)（grilling → to-spec → to-tickets → implement）与 ZCode 平台记忆系统的开发流程技能。自 v7.0 起 Matt 技能集**全部 27 个技能已收编进插件**（出处、改动与许可证见 [`docs/matt-vendored.md`](docs/matt-vendored.md)），装一个插件整套到位。四个自撰技能对应四个不同节奏，覆盖项目全生命周期，彼此零重叠。
 
 ## 第一次用（5 分钟上手）
 
 1. 安装本套件（二选一，**不可并用**——`~/.zcode/skills` 本地副本会永久遮蔽插件版，装了插件后请删除本地副本）：
-   - **插件方式（推荐）**：ZCode → 设置 → 插件管理 → 发现页 → **＋添加插件市场** → 填本仓库（GitHub `you-zhi-lixin/zcode-devflow-skills` 或本地文件夹）→ 安装「ZCode DevFlow Skills」。24 个技能（4 自撰＋20 收编）与 16 条 /命令随插件一起装好，**无需另装 Node.js 或 Matt 技能集**。
+   - **插件方式（推荐）**：ZCode → 设置 → 插件管理 → 发现页 → **＋添加插件市场** → 填本仓库（GitHub `you-zhi-lixin/zcode-devflow-skills` 或本地文件夹）→ 安装「ZCode DevFlow Skills」。31 个技能（4 自撰＋27 收编）与 20 条 /命令随插件一起装好，**无需另装 Node.js 或 Matt 技能集**。
    - **手动方式**：终端（Windows 用 Git Bash）进入本套件文件夹，敲：
 
      ```bash
@@ -15,7 +15,7 @@
 
 2. 打开你的项目，输入 `/project-init`（输入 / 开头的命令就是在指挥 AI 干活）——它会带你铺好地基、告诉你以后每天怎么用。已有项目也可以跑：它会识别存量项目，只补 AI 协作地图，不动你的代码。
 
-> **以前装过 Matt 技能集？** 装完 v7.0 后把本机已收编的 20 个目录删掉（清单见 [`docs/matt-vendored.md`](docs/matt-vendored.md)「老用户迁移」一节），未收编的 7 个保留本地继续可用。**别再跑 `npx skills add mattpocock/skills`**——会把旧副本装回来遮蔽插件版。
+> **以前装过 Matt 技能集？** 装完 v7.0 后把本机 Matt 技能集的 27 个目录全部删掉（清单见 [`docs/matt-vendored.md`](docs/matt-vendored.md)「老用户迁移」一节；收编件与本地副本逐字节一致，删了零损失）。**别再跑 `npx skills add mattpocock/skills`**——会把旧副本装回来遮蔽插件版。
 
 ## 你会看到什么
 
@@ -34,9 +34,15 @@
 
 共享纪律合同 [`skills/checkpoint/references/memory-discipline.md`](skills/checkpoint/references/memory-discipline.md) 是四个技能共用的单一真相源：四层地盘、两问测试、写入四问、重写律、索引律、体检红线、记忆健康台账。
 
-## 收编的 Matt 技能（20 个）
+## 收编的 Matt 技能（27 个，全套）
 
-v7.0 起随插件分发，无需另装：工程管线 `grill-with-docs → to-spec → to-tickets → implement`（含 `implement-spec`、`wayfinder`、`triage`、`retro`、`handoff`、`ask-matt` 路由器），配套纪律 `tdd`、`code-review`、`grilling`、`domain-modeling`、`codebase-design`、`writing-for-agents`、`prototype`、`research`、`improve-codebase-architecture`，以及地基 `setup-matt-pocock-skills`。日常最常用的入口：`/grill-with-docs`（磨方案）、`/to-spec` → `/to-tickets`（拆票）、`/implement`（干活）、`/retro`（复盘）、`/ask-matt`（不知道用哪条就问它）。收编范围、对上游的全部改动与 MIT 许可证全文见 [`docs/matt-vendored.md`](docs/matt-vendored.md)。
+v7.0 起随插件分发，无需另装。三组：
+
+- **工程管线**：`grill-with-docs → to-spec → to-tickets → implement`（含 `implement-spec`、`wayfinder`、`triage`、`retro`、`handoff`、`ask-matt` 路由器），配套纪律 `tdd`、`code-review`、`grilling`、`domain-modeling`、`codebase-design`、`writing-for-agents`、`prototype`、`research`、`improve-codebase-architecture`，地基 `setup-matt-pocock-skills`；
+- **独立工具**（不参与管线，单独用）：`/grill-me`（无仓库磨方案）、`/wait-what`（没听懂让它重讲）、`/teach`（跨会话教学）、`/to-questionnaire`（给别人出问卷）；
+- **自动启用的三件**（AI 匹配到场景自动用，不用喊）：`diagnosing-bugs`（疑难排查纪律）、`pr`（PR 正文模板）、`wizard`（人肉步骤向导）。
+
+日常最常用的入口：`/grill-with-docs`（磨方案）、`/to-spec` → `/to-tickets`（拆票）、`/implement`（干活）、`/retro`（复盘）、`/ask-matt`（不知道用哪条就问它）。收编范围、对上游的全部改动与 MIT 许可证全文见 [`docs/matt-vendored.md`](docs/matt-vendored.md)。
 
 ## 完整流程
 
@@ -50,7 +56,7 @@ grill-with-docs →（research / prototype 旁路）→ to-spec → to-tickets
 │ → /checkpoint（票收尾+沉淀）→ /clear → 下一张票 │
 └───────────────────────────────────────────────┘
    ↓
-/retro →（收口行满 2-3）/memory-audit
+/pr → /retro →（收口行满 2-3）/memory-audit
 ```
 
 节奏的锚点是「收口」不是「票」：一个窗口跑完多张小票，收口一次记一行即可（有票记票数，无票记轮 N）；大任务习惯一票一窗口只是拆分偏好，不是流程要求。
@@ -98,9 +104,9 @@ grill-with-docs →（research / prototype 旁路）→ to-spec → to-tickets
 ## 平台适配说明
 
 - 本套件为 **ZCode** 编写（记忆目录 `~/.zcode/cli/memories/projects/<项目文件夹>/memory/`、MEMORY.md 每会话自动载入）。
-- 自撰四技能正文为中文；收编的 20 个 Matt 技能保留英文原文（收编保真），术语与自撰技能对齐（frontier / ticket / handoff / retro 等）。
+- 自撰四技能正文为中文；收编的 27 个 Matt 技能保留英文原文（收编保真），术语与自撰技能对齐（frontier / ticket / handoff / retro 等）。
 - Windows 环境下用 Read 读候选记忆文件时，注意把 POSIX 路径展开为绝对路径（合同内已提示；给 AI 看的技术提醒，你不用管）。
 
 ## License
 
-本插件自撰部分 MIT。收编的 20 个 Matt 技能沿用上游 MIT License（Copyright (c) 2026 Matt Pocock），全文见 [`docs/matt-vendored.md`](docs/matt-vendored.md)。
+本插件自撰部分 MIT。收编的 27 个 Matt 技能沿用上游 MIT License（Copyright (c) 2026 Matt Pocock），全文见 [`docs/matt-vendored.md`](docs/matt-vendored.md)。

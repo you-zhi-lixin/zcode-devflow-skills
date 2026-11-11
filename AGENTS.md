@@ -7,14 +7,14 @@ ZCode 插件（devflow-market）：Matt Pocock 技能管线（grilling → to-sp
 | 路径 | 是什么 |
 |---|---|
 | `skills/{orient,checkpoint,memory-audit,project-init}/SKILL.md` | 四个自撰技能，正文全部简体中文 |
-| `skills/`（其余 20 目录） | v7.0 收编的 Matt 技能（清单与全部改动：`docs/matt-vendored.md`），保留英文原文与上游 frontmatter |
+| `skills/`（其余 27 目录） | v7.0 收编的 Matt 技能全套（清单与全部改动：`docs/matt-vendored.md`），保留英文原文与上游 frontmatter |
 | `skills/checkpoint/references/memory-discipline.md` | **单一真相源**：共享纪律合同（两问测试／写入四问／重写律／四层地盘／票据终态与票种口径／体检红线／记忆健康台账／拍板弹窗兜底） |
 | `skills/*/references/*.md` | 技能附属分支细则（如 `orient/references/empty-library.md`）——随所属技能一起改，不跨技能引用 |
 | `docs/matt-interlock.md` | Matt 咬合规则全文（AGENTS.md 正文只留指针）——动技能文本前必读 |
-| `commands/*.md` | 16 条薄壳 /命令（自撰 4：orient、checkpoint、memory-audit、project-init；收编 12：ask-matt、grill-with-docs、triage、improve-codebase-architecture、setup-matt-pocock-skills、to-spec、to-tickets、implement、implement-spec、wayfinder、retro、handoff）：frontmatter（description／argument-hint／skills）＋一行挂载技能＋`$ARGUMENTS`；model-invoked 收编技能不出命令（自动可达） |
+| `commands/*.md` | 20 条薄壳 /命令（自撰 4：orient、checkpoint、memory-audit、project-init；收编 16：ask-matt、grill-with-docs、triage、improve-codebase-architecture、setup-matt-pocock-skills、to-spec、to-tickets、implement、implement-spec、wayfinder、retro、handoff、grill-me、wait-what、teach、to-questionnaire）：frontmatter（description／argument-hint／skills）＋一行挂载技能＋`$ARGUMENTS`；model-invoked 收编技能不出命令（自动可达：diagnosing-bugs、pr、wizard） |
 | `.zcode-plugin/plugin.json`、`marketplace.json` | 插件与市场清单；**版本号两处必须同步改** |
 | `.scratch/memory-health.md` | 记忆健康台账：只追加、不改历史行（一行一事：`日期｜类型｜内容`） |
-| `docs/matt-vendored.md` | 收编出处与改动清单：上游出处、MIT 许可证全文、收编范围（20 收 7 不收）、烤入补丁 #1-18 与收编改动 #19-25、上游同步与老用户迁移 |
+| `docs/matt-vendored.md` | 收编出处与改动清单：上游出处、MIT 许可证全文、收编范围（27 全收含决策轨迹）、烤入补丁 #1-18 与收编改动 #19-21、上游同步与老用户迁移 |
 
 ## 硬边界与编辑规则
 
@@ -33,7 +33,7 @@ ZCode 插件（devflow-market）：Matt Pocock 技能管线（grilling → to-sp
 
 ## Matt 咬合规则（动技能文本前必读）
 
-Matt 技能集 20 技能子集已收编进本仓库（v7.0）。凡评审、修订、新增涉及自撰技能与收编技能的接壤面，**先读 [docs/matt-interlock.md](docs/matt-interlock.md)**——五条铁律：先读透再断言／双向咬合检查／出处单核对／副本联动／收编边界纪律（未收编 7 技能不冒充、本机旧副本勿复活）。
+Matt 技能集全部 27 技能已收编进本仓库（v7.0，用户拍板全收）。凡评审、修订、新增涉及自撰技能与收编技能的接壤面，**先读 [docs/matt-interlock.md](docs/matt-interlock.md)**——五条铁律：先读透再断言／双向咬合检查／出处单核对／副本联动／收编边界纪律（全收知情后果、本机旧副本勿复活）。
 
 ## 动敏感区前先读
 

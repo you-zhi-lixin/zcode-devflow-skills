@@ -1,6 +1,6 @@
 # Matt 咬合规则（v7.0 收编版）
 
-本插件自 v7.0 起将 Matt Pocock 技能集的 20 技能子集**收编进仓库**（`skills/` 下随插件分发，出处与全部改动见 [docs/matt-vendored.md](matt-vendored.md)），不再依赖用户本机安装 Matt 技能集。凡评审、修订、新增涉及自撰四技能（project-init／orient／checkpoint／memory-audit）与收编技能的接壤面，按此五条铁律执行。
+本插件自 v7.0 起将 Matt Pocock 技能集**全部 27 技能收编进仓库**（`skills/` 下随插件分发，出处与全部改动见 [docs/matt-vendored.md](matt-vendored.md)），不再依赖用户本机安装 Matt 技能集。凡评审、修订、新增涉及自撰四技能（project-init／orient／checkpoint／memory-audit）与收编技能的接壤面，按此五条铁律执行。
 
 ## 1. 先读透，再断言
 
@@ -15,7 +15,7 @@
 
 ## 3. 出处单核对（替代旧「补丁在位核对」）
 
-收编件上的每处偏离上游的改动都必须登记进 [docs/matt-vendored.md](matt-vendored.md)（含「治什么」列）——改动在仓库内，不会被冲掉，但**改收编件不记出处单＝私改**。动接壤面前先核对相关条目在位（grep 抽查）；上游同步（手动，可选）后须复查 #19-#23 剪枝区是否仍成立。
+收编件上的每处偏离上游的改动都必须登记进 [docs/matt-vendored.md](matt-vendored.md)（含「治什么」列）——改动在仓库内，不会被冲掉，但**改收编件不记出处单＝私改**。动接壤面前先核对相关条目在位（grep 抽查）；上游同步（手动，可选）后须复查烤入补丁 #1-#18 是否仍成立。
 
 ## 4. 副本联动
 
@@ -23,6 +23,6 @@
 
 ## 5. 收编边界纪律
 
-- **未收编不冒充**：grill-me、diagnosing-bugs、pr、wizard、wait-what、teach、to-questionnaire 七技能未收编（理由见出处单「收编范围」），自撰技能与 ask-matt 剪枝后文本不得向用户推荐它们；用户想收编哪个，走出处单流程（拷目录＋记出处＋重算闭合）。
+- **全收知情后果**：27 技能全收（2026-11-11 用户拍板翻案，初版 20 收方案的剪枝已撤销，决策轨迹见出处单「收编范围」）。其中 diagnosing-bugs／pr／wizard 为 model-invoked——AI 会在用户项目中**自动**启用它们（接管 PR 风格、自动进排查纪律、自动出人肉步骤向导）。这是产品定位（给用户完整的 Matt 技能集体验），**不是缺陷，评审时不得当 bug 修掉**。
 - **本机旧副本勿复活**：不跑 `npx skills add mattpocock/skills`、不手动 cp 收编件到 `~/.zcode/skills/`——本地副本会遮蔽插件版，改插件不生效（README「第一次用」有说明）。
 - **收编件 frontmatter 保真**：保留上游原样（name/description/disable-model-invocation），frontmatter 增补约定只约束自撰技能。

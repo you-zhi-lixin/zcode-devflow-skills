@@ -5,10 +5,10 @@
       "name": "zcode-devflow-skills",
       "source": ".",
       "version": "7.0.0",
-      "description": "Vendored Matt Pocock pipeline (20 skills) + memory and reconciliation layer",
+      "description": "Vendored Matt Pocock pipeline (all 27 skills) + memory and reconciliation layer",
       "displayName": "ZCode DevFlow Skills",
       "displayName_i18n": { "zh-CN": "ZCode DevFlow 技能套件" },
-      "description_i18n": { "zh-CN": "Matt Pocock 管线（已收编 20 技能）＋记忆与对账层：开工定位、收口沉淀、记忆对账、项目初始化" },
+      "description_i18n": { "zh-CN": "Matt Pocock 管线（已收编 27 技能·全套）＋记忆与对账层：开工定位、收口沉淀、记忆对账、项目初始化" },
       "category": "productivity"
     }
   ]
